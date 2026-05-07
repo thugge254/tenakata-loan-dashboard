@@ -426,4 +426,10 @@ if st.session_state.page == "OVERVIEW":
 elif st.session_state.page == "PORTFOLIO":
     show_portfolio_distribution(df, purpose_map)
 
+# -- RISK ANALYSIS --
+if st.session_state.page == "RISK":
+    show_risk_analysis(df)
+
+
+
 

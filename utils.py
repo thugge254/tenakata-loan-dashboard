@@ -14,7 +14,3 @@ def apply_purpose_mapping(df, purpose_map):
     df = df.copy()
     df["loan_purpose"] = df["loan_purpose"].map(purpose_map)
     return df
-
-def show_risk_analysis(df):
-    df = df.copy()
-    return df
