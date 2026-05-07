@@ -5,6 +5,7 @@ from PIL import Image
 import plotly.express as px
 from PD import show_portfolio_distribution
 from utils import purpose_map
+from RA import show_risk_analysis
 
 
 
