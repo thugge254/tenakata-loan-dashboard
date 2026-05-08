@@ -4,7 +4,7 @@ import pandas as pd
 from PIL import Image
 import plotly.express as px
 from PD import show_portfolio_distribution
-from utils import purpose_map
+from utils import purpose_map, calculate_total_loan_portfolio, calculate_average_loan_size
 from RA import show_risk_analysis
 
 
@@ -279,9 +279,9 @@ if st.session_state.page == "OVERVIEW":
 
     # --- KPI Section ---
     # Calculate KPIs
-    Total_Loan_Portfolio_Value = df["loan_amount"].sum() 
+    Total_Loan_Portfolio_Value = calculate_total_loan_portfolio(df)
     Number_of_Active_Loans = len(df)
-    Average_Loan_Size = df["loan_amount"].mean() 
+    Average_Loan_Size = calculate_average_loan_size(df)
     Default_Rate = df["Status"].mean()
     Average_Credit_Score = df["Credit_Score"].mean() 
     npl_loans = df[df["Status"] == 1].shape[0]

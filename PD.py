@@ -1,6 +1,8 @@
 import streamlit as st
 import plotly.express as px
-from utils import status_map
+from utils import status_map, calculate_total_loan_portfolio, calculate_average_loan_size, calculate_total_loans_issued
+
+
 
 
 
@@ -12,7 +14,50 @@ def show_portfolio_distribution(df, purpose_map):
         # Apply mapping safely
         df["loan_purpose"] = df["loan_purpose"].map(purpose_map)
 
+        # compute kpis
+        Total_Loan_Portfolio_Value = calculate_total_loan_portfolio(df)
+        Average_Loan_Size = calculate_average_loan_size(df)
+        Total_Loans_Issued = calculate_total_loans_issued(df)
+
+        kpi10_5, kpi11_5, kpi12_5 = st.columns([0.33, 0.33, 0.33])
         kpi10, kpi11, kpi12 = st.columns([0.33, 0.33, 0.33])
+
+        with kpi10_5:
+            st.markdown(
+            f"""
+            <div style="font-size:18px; font-weight:bold; color:#0B3C49">💰 Total Loan Portfolio </div>
+            <div style="font-size:26px; font-weight:900; color:#E53935;">{Total_Loan_Portfolio_Value:,.0f}</div>
+            <div style="font-size:14px; color:gray;">
+            Total value of loans issued to borrowers within the portfolio.
+            Represents the oveall exposure.
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+            
+        with kpi11_5:
+            st.markdown(
+                f"""
+                <div style="font-size:18px; font-weight:bold; color:#0B3C49">💰 Average Loan Size</div>
+                <div style="font-size:26px; font-weight:900; color:#E53935;">{Average_Loan_Size:,.0f}</div>
+                <div style="font-size:14px; color:gray;">
+                The average amount issued per loan, calculated as total loan portfolio/number of active loans.
+                </div>
+                """,
+                unsafe_allow_html=True
+        )
+            
+        with kpi12_5:
+            st.markdown(
+            f"""
+            <div style="font-size:18px; font-weight:bold; color:#0B3C49">🧾 Total Loans Issued</div>
+            <div style="font-size:26px; font-weight:900; color:#E53935;">{Total_Loans_Issued:,.0f}</div>
+            <div style="font-size:14px; color:gray;">
+            Total number of loans that are currently active (approved and disbursed loans).
+            </div>
+          """,
+            unsafe_allow_html=True
+        )
 
         with kpi10:
             # Map status labels
