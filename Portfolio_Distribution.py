@@ -1,10 +1,7 @@
 import streamlit as st
 import plotly.express as px
-from utils import status_map, calculate_total_loan_portfolio, calculate_average_loan_size, calculate_total_loans_issued
-
-
-
-
+from utils import status_map, calculate_total_loan_portfolio
+from utils import calculate_average_loan_size, calculate_total_loans_issued
 
 
 def show_portfolio_distribution(df, purpose_map):

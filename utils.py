@@ -23,3 +23,6 @@ def calculate_average_loan_size(df):
 
 def calculate_total_loans_issued(df):
     return len(df)
+
+def calculate_average_interest_rate(df):
+    return df["rate_of_interest"].mean()

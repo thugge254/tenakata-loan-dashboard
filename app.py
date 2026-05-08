@@ -3,10 +3,11 @@ import streamlit as st
 import pandas as pd
 from PIL import Image
 import plotly.express as px
-from PD import show_portfolio_distribution
-from utils import purpose_map, calculate_total_loan_portfolio, calculate_average_loan_size
-from RA import show_risk_analysis
-
+from Portfolio_Distribution import show_portfolio_distribution
+from utils import purpose_map, calculate_total_loan_portfolio, calculate_average_interest_rate
+from utils import calculate_average_loan_size, calculate_total_loans_issued
+from Risk_Analysis import show_risk_analysis
+from  Profitability_Analysis import show_profitability_analysis
 
 
 st.set_page_config(
@@ -233,7 +234,7 @@ with bt4:
     </style>
     """, unsafe_allow_html=True)
     if st.button("💰 PROFITABILITY ANALYSIS"):
-        st.session_state.page = "PROFIT"
+        st.session_state.page = "PROFITABILITY"
         
 with bt5:
     st.markdown("""
@@ -287,10 +288,10 @@ if st.session_state.page == "OVERVIEW":
     npl_loans = df[df["Status"] == 1].shape[0]
     total_loans = len(df)
     NPL_Ratio = npl_loans/total_loans
-    Average_Interest_Rate = df["rate_of_interest"].mean()
+    Average_Interest_Rate = calculate_average_interest_rate(df)
     avg_income = df["income"].mean()
 
-    Total_Loans_Issued = len(df)
+    Total_Loans_Issued = calculate_total_loans_issued(df)
     total_loans = df["loan_amount"].sum() 
     unique_borrowers = df["ID"].nunique()
 
@@ -299,7 +300,7 @@ if st.session_state.page == "OVERVIEW":
     # Transform the column
     df["loan_purpose"] = df["loan_purpose"].map(purpose_map)
 
-    # Display KPIs in four columns
+    # Display KPIs in five columns
     kpi1, kpi2, kpi3, kpi4, kpi5,  = st.columns([0.2, 0.2, 0.2, 0.2, 0.2])
     kpi6, kpi7, kpi8, kpi9, kpi10 = st.columns([0.2, 0.2, 0.2, 0.2, 0.2])
     with kpi1:
@@ -430,6 +431,8 @@ elif st.session_state.page == "PORTFOLIO":
 if st.session_state.page == "RISK":
     show_risk_analysis(df)
 
+if st.session_state.page == "PROFITABILITY":
+    show_profitability_analysis(df)
 
 
 
