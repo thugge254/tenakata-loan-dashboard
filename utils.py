@@ -10,6 +10,10 @@ status_map = {
     1: "Default"
 }
 
+TEXT_COLOR = "#0B3C49"
+NUMBER_COLOR = "#E53935"
+ACCENT_COLOR = "#FFB300"
+
 def apply_purpose_mapping(df, purpose_map):
     df = df.copy()
     df["loan_purpose"] = df["loan_purpose"].map(purpose_map)
