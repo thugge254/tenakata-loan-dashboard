@@ -89,6 +89,9 @@ def show_profitability_analysis(df):
         )
 
         fig.update_layout(
+            xaxis_title="Loan Amount ($)",
+            yaxis_title="Estimated Interest Revenue ($)",
+            legend_title_text="Loan Category",
             title_font_color=TEXT_COLOR,
             paper_bgcolor="white",
             plot_bgcolor="white"
@@ -113,6 +116,9 @@ def show_profitability_analysis(df):
         )
 
         fig.update_layout(
+            yaxis_title="Estimated Interest Revenue ($)",
+            legend_title_text="Geographic Region",
+            xaxis_title="Total Loan Amount ($)",
             title_font_color=TEXT_COLOR,
             paper_bgcolor="white",
             plot_bgcolor="white"
