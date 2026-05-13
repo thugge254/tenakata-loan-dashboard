@@ -72,10 +72,18 @@ with col1:
     )
 
 html_title = """
-<h1 style='text-align:center; margin:0; padding:0; color:#0B3C49; line-height:1.1;'>
-Empowering MSMEs Through Data: Tenakata Loan Portfolio Analysis
-</h1>
-"""
+<h1 style='
+    text-align:center;
+    margin:0;
+    padding:0;
+    color:#0B3C49;
+    line-height:1.2;
+    font-size:clamp(1.2rem, 4vw, 2.8rem);
+    word-wrap:break-word;
+    '>
+    Empowering MSMEs Through Data: Tenakata Loan Portfolio Analysis
+    </h1>
+    """
 
 with col2:
     st.markdown(html_title, unsafe_allow_html=True)
@@ -285,7 +293,7 @@ if st.session_state.page == "OVERVIEW":
     Total_Loan_Portfolio_Value = calculate_total_loan_portfolio(df)
     Number_of_Active_Loans = len(df)
     Average_Loan_Size = calculate_average_loan_size(df)
-    Default_Rate = df["Status"].mean()*100             
+    Default_Rate = df["Status"].mean()             
     Average_Credit_Score = df["Credit_Score"].mean() 
     npl_loans = df[df["Status"] == 1].shape[0]
     total_loans = len(df)
