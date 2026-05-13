@@ -115,7 +115,7 @@ with bt1:
     """, unsafe_allow_html=True)
 
     st.button("📊 OVERVIEW", use_container_width=True)
-    if st.button("📊 OVERVIEW", use_container_width=True):
+    if st.button("📊 OVERVIEW"):
         st.session_state.page = "OVERVIEW"
 
 with bt2:
