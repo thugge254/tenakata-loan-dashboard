@@ -155,39 +155,36 @@ with bt2:
 with bt3:
     st.markdown("""
     <style>
-
-    /* Button base */
-    div.stButton > button {
-        width: 230px;             
-        height: 50px;
-        font-size: 16px;
-        font-weight: 700;
-        color: white;        
-        background-color: #0B3C49;
-        border-radius: 12px;              
-        transition: all 0.3s ease; 
+    div.stButton > button{
+        width:100% !important;
+        height:clamp(42px,6vw,50px) !important;
+        font-size:clamp(13px,2.5vw,16px) !important;
+        font-weight:700 !important;
+        color:white !important;
+        background-color:#0B3C49 !important;
+        border-radius:12px !important;
+        transition:all 0.3s ease;
     }
 
-    /* Hover effect */
-    div.stButton > button:hover {
-        color: white;
-        background-color: #E53935;
-        cursor: pointer;
+    div.stButton > button:hover{
+        color:white !important;
+        background-color:#E53935 !important;
+        cursor:pointer;
     }
-                
-    /* Clicked / active */
-    div.stButton > button:active {
-        background-color: #E53935;
-        color: white;
+
+    div.stButton > button:active{
+        background-color:#E53935 !important;
+        color:white !important;
     }
-    /* Remove default focus outline and glow after button click */
-    div.stButton > button:focus {
-        outline: none !important;
-        box-shadow: none !important;
-        border: none !important;
+
+    div.stButton > button:focus{
+        outline:none !important;
+        box-shadow:none !important;
+        border:none !important;
     }
     </style>
     """, unsafe_allow_html=True)
+    
     if st.button("⚠️ RISK ANALYSIS"):
         st.session_state.page = "RISK"
 
