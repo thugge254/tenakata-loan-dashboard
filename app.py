@@ -91,10 +91,11 @@ with col2:
 bt1, bt2, bt3, bt4, bt5  = st.columns([0.2, 0.2, 0.2, 0.2, 0.2])
 
 with bt1:
+
     st.markdown("""
     <style>
+
     div.stButton > button {
-        width: clamp(140px, 60vw, 230px) !important;
         height: clamp(42px, 6vw, 50px) !important;
         font-size: clamp(13px, 2.5vw, 16px) !important;
         font-weight: 700 !important;
@@ -102,6 +103,7 @@ with bt1:
         background-color: #0B3C49 !important;
         border-radius: 12px !important;
         transition: all 0.3s ease;
+        width: 100% !important;
     }
 
     div.stButton > button:hover {
@@ -112,17 +114,14 @@ with bt1:
     </style>
     """, unsafe_allow_html=True)
 
-    if st.button("📊 OVERVIEW", use_container_width = True):
-        st.session_state.page = "OVERVIEW"
+    st.button("📊 OVERVIEW", use_container_width=True, key="overview_btn")
 
 with bt2:
 
     st.markdown("""
 
     <style>
-
-
-
+                
     /* Button base */
 
     div.stButton > button {
@@ -166,8 +165,6 @@ with bt2:
         color: white;
 
     }
-
-    /* Remove default focus outline and glow after button click */
 
     div.stButton > button:focus {
 
