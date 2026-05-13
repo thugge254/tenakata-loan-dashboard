@@ -94,9 +94,10 @@ with bt1:
     st.markdown("""
     <style>
 
-    /* Button base */
+    /* Responsive Button */
     div.stButton > button {
-        width: 230px;             
+        width: 100%;              /* key fix */
+        max-width: 230px;         /* keeps desktop size */
         height: 50px;
         font-size: 16px;
         font-weight: 700;
@@ -106,24 +107,23 @@ with bt1:
         transition: all 0.3s ease; 
     }
 
-    /* Hover effect */
     div.stButton > button:hover {
-        color: white;
         background-color: #E53935;
+        color: white;
         cursor: pointer;
     }
-                
-    /* Clicked / active */
+
     div.stButton > button:active {
         background-color: #E53935;
         color: white;
     }
-    /* Remove default focus outline and glow after button click */
+
     div.stButton > button:focus {
         outline: none !important;
         box-shadow: none !important;
         border: none !important;
     }
+
     </style>
     """, unsafe_allow_html=True)
     if st.button("📊 OVERVIEW"):
