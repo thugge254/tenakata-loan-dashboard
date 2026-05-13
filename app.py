@@ -115,41 +115,78 @@ with bt1:
         st.session_state.page = "OVERVIEW"
 
 with bt2:
+
     st.markdown("""
+
     <style>
+
+
+
+    /* Button base */
+
     div.stButton > button {
-        width: 100% !important;
-        height: clamp(42px, 6vw, 50px) !important;
-        font-size: clamp(13px, 2.5vw, 16px) !important;
-        font-weight: 700 !important;
-        color: white !important;
-        background-color: #0B3C49 !important;
-        border-radius: 12px !important;
+
+        width: 230px;            
+
+        height: 50px;
+
+        font-size: 16px;
+
+        font-weight: 700;
+
+        color: white;        
+
+        background-color: #0B3C49;
+
+        border-radius: 12px;              
+
         transition: all 0.3s ease;
-        border: none !important;
+
     }
+
+
 
     /* Hover effect */
+
     div.stButton > button:hover {
-        color: white !important;
-        background-color: #E53935 !important;
+
+        color: white;
+
+        background-color: #E53935;
+
         cursor: pointer;
-    }
-    
-    /* Clicked / active */
-    div.stButton > button:active {
-        background-color: #E53935 !important;
-        color: white !important;
+
     }
 
-    /* Remove default focus outline */
-    div.stButton > button:focus {
-        outline: none !important;
-        box-shadow: none !important;
-        border: none !important;
+   
+
+    /* Clicked / active */
+
+    div.stButton > button:active {
+
+        background-color: #E53935;
+
+        color: white;
+
     }
+
+    /* Remove default focus outline and glow after button click */
+
+    div.stButton > button:focus {
+
+        outline: none !important;
+
+        box-shadow: none !important;
+
+        border: none !important;
+
+    }
+
     </style>
-    """, unsafe_allow_html=True)
+
+    """, unsafe_allow_html=True) 
+
+
     if st.button("📈 PORTFOLIO DISTRIBUTION"):
         st.session_state.page = "PORTFOLIO"
 
