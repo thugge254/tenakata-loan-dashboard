@@ -91,11 +91,12 @@ with col2:
 bt1, bt2, bt3, bt4, bt5  = st.columns([0.2, 0.2, 0.2, 0.2, 0.2])
 
 with bt1:
+
     st.markdown("""
     <style>
 
     div.stButton > button {
-        width: clamp(140px, 60vw, 230px) !important;
+        width: 100% !important;
         height: clamp(42px, 6vw, 50px) !important;
         font-size: clamp(13px, 2.5vw, 16px) !important;
         font-weight: 700 !important;
@@ -112,7 +113,9 @@ with bt1:
 
     </style>
     """, unsafe_allow_html=True)
-    if st.button("📊 OVERVIEW"):
+
+    st.button("📊 OVERVIEW", use_container_width=True)
+    if st.button("📊 OVERVIEW", use_container_width=True):
         st.session_state.page = "OVERVIEW"
 
 with bt2:
