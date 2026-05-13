@@ -111,7 +111,8 @@ with bt1:
 
     </style>
     """, unsafe_allow_html=True)
-    if st.button("📊 OVERVIEW"):
+
+    if st.button("📊 OVERVIEW", use_container_width = True):
         st.session_state.page = "OVERVIEW"
 
 with bt2:
@@ -144,8 +145,6 @@ with bt2:
 
     }
 
-
-
     /* Hover effect */
 
     div.stButton > button:hover {
@@ -157,8 +156,6 @@ with bt2:
         cursor: pointer;
 
     }
-
-   
 
     /* Clicked / active */
 
