@@ -91,12 +91,11 @@ with col2:
 bt1, bt2, bt3, bt4, bt5  = st.columns([0.2, 0.2, 0.2, 0.2, 0.2])
 
 with bt1:
-
     st.markdown("""
     <style>
 
     div.stButton > button {
-        width: 100% !important;
+        width: clamp(140px, 60vw, 230px) !important;
         height: clamp(42px, 6vw, 50px) !important;
         font-size: clamp(13px, 2.5vw, 16px) !important;
         font-weight: 700 !important;
