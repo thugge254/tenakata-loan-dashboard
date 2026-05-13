@@ -95,32 +95,19 @@ with bt1:
     <style>
 
     div.stButton > button {
-        width: 100%;
-        max-width: 230px;
-        height: clamp(42px, 6vw, 50px);
-        font-size: clamp(13px, 2.5vw, 16px);
-        font-weight: 700;
-        color: white;        
-        background-color: #0B3C49;
-        border-radius: 12px;              
-        transition: all 0.3s ease; 
+        width: clamp(140px, 60vw, 230px) !important;
+        height: clamp(42px, 6vw, 50px) !important;
+        font-size: clamp(13px, 2.5vw, 16px) !important;
+        font-weight: 700 !important;
+        color: white !important;
+        background-color: #0B3C49 !important;
+        border-radius: 12px !important;
+        transition: all 0.3s ease;
     }
 
     div.stButton > button:hover {
-        color: white;
-        background-color: #E53935;
+        background-color: #E53935 !important;
         cursor: pointer;
-    }
-
-    div.stButton > button:active {
-        background-color: #E53935;
-        color: white;
-    }
-
-    div.stButton > button:focus {
-        outline: none !important;
-        box-shadow: none !important;
-        border: none !important;
     }
 
     </style>
