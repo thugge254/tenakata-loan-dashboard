@@ -114,7 +114,7 @@ with bt1:
     </style>
     """, unsafe_allow_html=True)
 
-    st.button("📊 OVERVIEW", use_container_width=True, key="overview_btn")
+    st.button("📊 OVERVIEW", key="overview_btn")
 
 with bt2:
 
