@@ -94,12 +94,11 @@ with bt1:
     st.markdown("""
     <style>
 
-    /* Responsive Button */
     div.stButton > button {
-        width: 100%;              /* key fix */
-        max-width: 230px;         /* keeps desktop size */
-        height: 50px;
-        font-size: 16px;
+        width: 100%;
+        max-width: 230px;
+        height: clamp(42px, 6vw, 50px);
+        font-size: clamp(13px, 2.5vw, 16px);
         font-weight: 700;
         color: white;        
         background-color: #0B3C49;
@@ -108,8 +107,8 @@ with bt1:
     }
 
     div.stButton > button:hover {
-        background-color: #E53935;
         color: white;
+        background-color: #E53935;
         cursor: pointer;
     }
 
