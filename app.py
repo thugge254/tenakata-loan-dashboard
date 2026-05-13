@@ -4,10 +4,12 @@ import pandas as pd
 from PIL import Image
 import plotly.express as px
 from Portfolio_Distribution import show_portfolio_distribution
+from Predictive_Insights import show_prediction_analysis
 from utils import purpose_map, calculate_total_loan_portfolio, calculate_average_interest_rate
 from utils import calculate_average_loan_size, calculate_total_loans_issued
 from Risk_Analysis import show_risk_analysis
 from  Profitability_Analysis import show_profitability_analysis
+from Predictive_Insights import show_prediction_analysis
 
 
 st.set_page_config(
@@ -283,7 +285,7 @@ if st.session_state.page == "OVERVIEW":
     Total_Loan_Portfolio_Value = calculate_total_loan_portfolio(df)
     Number_of_Active_Loans = len(df)
     Average_Loan_Size = calculate_average_loan_size(df)
-    Default_Rate = df["Status"].mean()
+    Default_Rate = df["Status"].mean()*100             
     Average_Credit_Score = df["Credit_Score"].mean() 
     npl_loans = df[df["Status"] == 1].shape[0]
     total_loans = len(df)
@@ -433,6 +435,8 @@ if st.session_state.page == "RISK":
 
 if st.session_state.page == "PROFITABILITY":
     show_profitability_analysis(df)
+if st.session_state.page == "PREDICT":
+    show_prediction_analysis(df)
 
 
 
