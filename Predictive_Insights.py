@@ -6,7 +6,6 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import accuracy_score, roc_auc_score, classification_report
-from supabase_auth import model
 import xgboost as xgb
 import plotly.graph_objects as go
 
