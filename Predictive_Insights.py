@@ -223,7 +223,7 @@ def show_prediction_analysis(df):
             number={
             'suffix': "%",
             'font': {
-                'size': 40,
+                'size': 50,
                 'color': '#0B3C49', 
                 'family': "Arial Black"
             }
