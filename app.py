@@ -112,7 +112,7 @@ with bt1:
     </style>
     """, unsafe_allow_html=True)
 
-    if st.button("📊 OVERVIEW", use_container_width = True):
+    if st.button("📊 OVERVIEW"):
         st.session_state.page = "OVERVIEW"
 
 with bt2:
@@ -460,6 +460,3 @@ if st.session_state.page == "PROFITABILITY":
     show_profitability_analysis(df)
 if st.session_state.page == "PREDICT":
     show_prediction_analysis(df)
-
-
-
