@@ -945,7 +945,7 @@ def show_prediction_analysis(df):
         # ================================
         # SIDE-BY-SIDE LAYOUT
         # ================================
-        col_metric, col_gauge = st.columns([1, 1])
+        col_metric, col, col_gauge = st.columns([0.33, 0.33, 0.33]) # Adjusted for better spacing
 
         risk_value = prob_default * 100
         prob_percent = risk_value
@@ -961,6 +961,7 @@ def show_prediction_analysis(df):
             <div style="
                 background-color: #FFFFFF;
                 padding: 25px;
+                margin-top: 25px;
                 border-radius: 12px;
                 border: 1px solid #E5E7EB;
                 box-shadow: 2px 2px 8px rgba(0,0,0,0.03);
@@ -1011,7 +1012,7 @@ def show_prediction_analysis(df):
         </div>
         """
 
-            # textwrap.dedent safely strips the code-block-triggering indentation tabs
+    
             st.markdown(textwrap.dedent(metric_html), unsafe_allow_html=True)
         # ================================
         # GAUGE CHART (RIGHT)
