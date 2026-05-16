@@ -713,40 +713,7 @@ def show_prediction_analysis(df):
                 value=2026,
                 key="prediction_year"
             )
-        st.markdown("""
-            <style>
-            /* Center the entire form submit button container */
-            div[data-testid="stFormSubmitButton"] {
-                display: flex;
-                justify-content: center;
-            }
-
-            /* Style the actual button */
-            div[data-testid="stFormSubmitButton"] button {
-                width: 230px !important;
-                height: 50px !important;
-                font-size: 16px !important;
-                font-weight: 700 !important;
-                color: white !important;
-                background-color: #0B3C49 !important;
-                border-radius: 12px !important;
-                transition: all 0.3s ease !important;
-            }
-
-            /* Hover */
-            div[data-testid="stFormSubmitButton"] button:hover {
-                background-color: #E53935 !important;
-                cursor: pointer !important;
-            }
-
-            /* Active */
-            div[data-testid="stFormSubmitButton"] button:active {
-                background-color: #E53935 !important;
-            }
-            </style>
-            """, unsafe_allow_html=True)
-
-        submit_button = st.form_submit_button("🔍 Predict Risk")
+    
     
         with centre_col:
             st.markdown(
@@ -838,7 +805,40 @@ def show_prediction_analysis(df):
                 key="prediction_business_commercial"
 
             )
-    
+        st.markdown("""
+            <style>
+            /* Center the entire form submit button container */
+            div[data-testid="stFormSubmitButton"] {
+                display: flex;
+                justify-content: center;
+            }
+
+            /* Style the actual button */
+            div[data-testid="stFormSubmitButton"] button {
+                width: 230px !important;
+                height: 50px !important;
+                font-size: 16px !important;
+                font-weight: 700 !important;
+                color: white !important;
+                background-color: #0B3C49 !important;
+                border-radius: 12px !important;
+                transition: all 0.3s ease !important;
+            }
+
+            /* Hover */
+            div[data-testid="stFormSubmitButton"] button:hover {
+                background-color: #E53935 !important;
+                cursor: pointer !important;
+            }
+
+            /* Active */
+            div[data-testid="stFormSubmitButton"] button:active {
+                background-color: #E53935 !important;
+            }
+            </style>
+            """, unsafe_allow_html=True)
+
+        submit_button = st.form_submit_button("🔍 Predict Risk")
         
 
         if submit_button:
@@ -888,7 +888,7 @@ def show_prediction_analysis(df):
             # 3. Get the probability of default (Class 1) using your pipeline
             prob_default = pipeline.predict_proba(input_data)[0][1] 
             prob_percent = prob_default * 100
-    
+
             # Dynamic threshold logic for colors and text
             if prob_default < 0.30:
                 status_color, bg_color, risk_text = "#2ECC71", "#E8F8F0", "LOW RISK"
@@ -907,7 +907,7 @@ def show_prediction_analysis(df):
 
             # Divider
             st.markdown("<br><hr>", unsafe_allow_html=True)
-            
+                
             # Section Header matching Tenakata theme
             st.markdown("""
                         <div style="
@@ -924,10 +924,10 @@ def show_prediction_analysis(df):
                     """, unsafe_allow_html=True)
             # ================================
             # SIDE-BY-SIDE LAYOUT
-            # ================================
+        # ================================
             risk_value = prob_default * 100
             prob_percent = risk_value
-            
+                
             col_metric, col, col_gauge = st.columns([0.33, 0.33, 0.33]) # Adjusted for better spacing   
 
             with col_metric:
@@ -1004,7 +1004,7 @@ def show_prediction_analysis(df):
                     box-shadow: 2px 2px 8px rgba(0,0,0,0.03);
                 ">
                 """, unsafe_allow_html=True)
-             
+                
                 fig = go.Figure(go.Indicator(
                     mode="gauge+number",
                     value=risk_value,
