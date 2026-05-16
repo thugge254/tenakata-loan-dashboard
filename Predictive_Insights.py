@@ -713,41 +713,41 @@ def show_prediction_analysis(df):
                 value=2026,
                 key="prediction_year"
             )
-            st.markdown("""
-                <style>
-                /* Center the entire form submit button container */
-                div[data-testid="stFormSubmitButton"] {
-                    display: flex;
-                    justify-content: center;
-                }
+        st.markdown("""
+            <style>
+            /* Center the entire form submit button container */
+            div[data-testid="stFormSubmitButton"] {
+                display: flex;
+                justify-content: center;
+            }
 
-                /* Style the actual button */
-                div[data-testid="stFormSubmitButton"] button {
-                    width: 230px !important;
-                    height: 50px !important;
-                    font-size: 16px !important;
-                    font-weight: 700 !important;
-                    color: white !important;
-                    background-color: #0B3C49 !important;
-                    border-radius: 12px !important;
-                    transition: all 0.3s ease !important;
-                }
+            /* Style the actual button */
+            div[data-testid="stFormSubmitButton"] button {
+                width: 230px !important;
+                height: 50px !important;
+                font-size: 16px !important;
+                font-weight: 700 !important;
+                color: white !important;
+                background-color: #0B3C49 !important;
+                border-radius: 12px !important;
+                transition: all 0.3s ease !important;
+            }
 
-                /* Hover */
-                div[data-testid="stFormSubmitButton"] button:hover {
-                    background-color: #E53935 !important;
-                    cursor: pointer !important;
-                }
+            /* Hover */
+            div[data-testid="stFormSubmitButton"] button:hover {
+                background-color: #E53935 !important;
+                cursor: pointer !important;
+            }
 
-                /* Active */
-                div[data-testid="stFormSubmitButton"] button:active {
-                    background-color: #E53935 !important;
-                }
-                </style>
-                """, unsafe_allow_html=True)
+            /* Active */
+            div[data-testid="stFormSubmitButton"] button:active {
+                background-color: #E53935 !important;
+            }
+            </style>
+            """, unsafe_allow_html=True)
 
-            submit_button = st.form_submit_button("🔍 Predict Risk")
-        
+        submit_button = st.form_submit_button("🔍 Predict Risk")
+    
         with centre_col:
             st.markdown(
                 """
