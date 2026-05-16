@@ -713,59 +713,7 @@ def show_prediction_analysis(df):
                 value=2026,
                 key="prediction_year"
             )
-            # Inject your custom style block right before the button inside the form
-            st.markdown("""
-                        <style>
-                        /* Target BOTH normal buttons and form submit buttons to keep your 230px style consistent */
-                        div.stButton > button,
-                        div.stFormSubmitButton > button {
-                            width: 230px !important;             
-                            height: 50px !important;
-                            font-size: 16px !important;
-                            font-weight: 700 !important;
-                            color: white !important;        
-                            background-color: #0B3C49 !important;
-                            border-radius: 12px !important;              
-                            transition: all 0.3s ease !important; 
-                        }
-
-                        /* Hover effect */
-                        div.stButton > button:hover,
-                        div.stFormSubmitButton > button:hover {
-                            color: white !important;
-                            background-color: #E53935 !important;
-                            cursor: pointer !important;
-                        }
-
-                        /* Clicked / active state */
-                        div.stButton > button:active,
-                        div.stFormSubmitButton > button:active {
-                            background-color: #E53935 !important;
-                            color: white !important;
-                        }
-
-                        /* Remove default focus outline and glow */
-                        div.stButton > button:focus,
-                        div.stFormSubmitButton > button:focus {
-                            outline: none !important;
-                            box-shadow: none !important;
-                            border: none !important;
-                        }
-                        </style>
-                        """, unsafe_allow_html=True
-                    )
-
-            # Render the standard width button
-            st.markdown("""
-            <style>
-            div.stFormSubmitButton {
-                display: flex;
-                justify-content: center;
-            }
-            </style>
-            """, unsafe_allow_html=True)
-
-            submit_button = st.form_submit_button("🔍 Predict Risk")
+           
         
         with centre_col:
             st.markdown(
@@ -855,7 +803,42 @@ def show_prediction_analysis(df):
                 "Business/Commercial Loan",
                 ["b/c", "nob/c"],
                 key="prediction_business_commercial"
+
             )
+        st.markdown("""
+        <style>
+        /* Center the entire form submit button container */
+        div[data-testid="stFormSubmitButton"] {
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Style the actual button */
+        div[data-testid="stFormSubmitButton"] button {
+            width: 230px !important;
+            height: 50px !important;
+            font-size: 16px !important;
+            font-weight: 700 !important;
+            color: white !important;
+            background-color: #0B3C49 !important;
+            border-radius: 12px !important;
+            transition: all 0.3s ease !important;
+        }
+
+        /* Hover */
+        div[data-testid="stFormSubmitButton"] button:hover {
+            background-color: #E53935 !important;
+            cursor: pointer !important;
+        }
+
+        /* Active */
+        div[data-testid="stFormSubmitButton"] button:active {
+            background-color: #E53935 !important;
+        }
+        </style>
+        """, unsafe_allow_html=True)
+
+        submit_button = st.form_submit_button("🔍 Predict Risk")
         
 
         if submit_button:
@@ -1061,5 +1044,3 @@ def show_prediction_analysis(df):
                 st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
 
                 st.markdown("</div>", unsafe_allow_html=True)
-
-               
