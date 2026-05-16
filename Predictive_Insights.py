@@ -256,8 +256,8 @@ def show_prediction_analysis(df):
                 'tickcolor': "black",
                 'tickfont': {
                 'family': "Arial Black",
-                'size': 14,             
-                'color': "black"        
+                'size': 13,             
+                'color': '#0B3C49'       
                 }
                 },
 
@@ -271,7 +271,7 @@ def show_prediction_analysis(df):
 
                 'threshold': {
                     'line': {'color': "black", 'width': 4},
-                    'thickness': 0.75,
+                    'thickness': 0.70,
                     'value': portfolio_risk
                 }
             }
@@ -290,7 +290,7 @@ def show_prediction_analysis(df):
             }
             )
 
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, use_container_width=False)
 
     with col2:
         # Creating the Risk Level segments
@@ -805,7 +805,7 @@ def show_prediction_analysis(df):
                 key="prediction_business_commercial"
 
             )
-        st.markdown("""
+            st.markdown("""
             <style>
             /* Center the entire form submit button container */
             div[data-testid="stFormSubmitButton"] {
@@ -841,206 +841,208 @@ def show_prediction_analysis(df):
         submit_button = st.form_submit_button("🔍 Predict Risk")
         
 
-        if submit_button:
-        # Creating the input DataFrame with all 29 features
-            input_data = pd.DataFrame({
-                'year': [year],
-                'loan_limit': [loan_limit],
-                'Gender': [gender],
-                'approv_in_adv': [approv_in_adv],
-                'loan_type': [loan_type],
-                'loan_purpose': [loan_purpose],
-                'Credit_Worthiness': [Credit_Worthiness],
-                'open_credit': [open_credit],
-                'business_or_commercial': [business_or_commercial],
-                'loan_amount': [loan_amount],
-                'term': [term],
-                'Neg_ammortization': [Neg_ammortization],
-                'interest_only': [interest_only],
-                'lump_sum_payment': [lump_sum_payment],
-                'property_value': [property_value],
-                'construction_type': [construction_type],
-                'occupancy_type': [occupancy_type],
-                'Secured_by': [Secured_by],
-                'total_units': [total_units],
-                'income': [income],
-                'credit_type': [credit_type],
-                'Credit_Score': [credit_score],
-                'co-applicant_credit_type': [co_applicant_credit_type],
-                'age': [age],
-                'submission_of_application': [submission_of_application],
-                'LTV': [ltv],
-                'Region': [region],
-                'Security_Type': [Security_Type],
-                'dtir1': [dti]
-            })
+    if submit_button:
+    # Creating the input DataFrame with all 29 features
+        input_data = pd.DataFrame({
+            'year': [year],
+            'loan_limit': [loan_limit],
+            'Gender': [gender],
+            'approv_in_adv': [approv_in_adv],
+            'loan_type': [loan_type],
+            'loan_purpose': [loan_purpose],
+            'Credit_Worthiness': [Credit_Worthiness],
+            'open_credit': [open_credit],
+            'business_or_commercial': [business_or_commercial],
+            'loan_amount': [loan_amount],
+            'term': [term],
+            'Neg_ammortization': [Neg_ammortization],
+            'interest_only': [interest_only],
+            'lump_sum_payment': [lump_sum_payment],
+            'property_value': [property_value],
+            'construction_type': [construction_type],
+            'occupancy_type': [occupancy_type],
+            'Secured_by': [Secured_by],
+            'total_units': [total_units],
+            'income': [income],
+            'credit_type': [credit_type],
+            'Credit_Score': [credit_score],
+            'co-applicant_credit_type': [co_applicant_credit_type],
+            'age': [age],
+            'submission_of_application': [submission_of_application],
+            'LTV': [ltv],
+            'Region': [region],
+            'Security_Type': [Security_Type],
+            'dtir1': [dti]
+        })
 
             # clean column names
-            input_data.columns = input_data.columns.str.strip()
+        input_data.columns = input_data.columns.str.strip()
 
+    
             # clean column values
-            for col in input_data.columns: 
-                input_data[col] = input_data[col].astype(str).str.strip()
+        for col in input_data.columns: 
+            input_data[col] = input_data[col].astype(str).str.strip()
 
             # 2. Ensure column order matches X_train
-            input_data = input_data[feature_cols] 
+        input_data = input_data[feature_cols] 
             
             # 3. Get the probability of default (Class 1) using your pipeline
-            prob_default = pipeline.predict_proba(input_data)[0][1] 
-            prob_percent = prob_default * 100
-
+        prob_default = pipeline.predict_proba(input_data)[0][1] 
+        prob_percent = prob_default * 100
+    
             # Dynamic threshold logic for colors and text
-            if prob_default < 0.30:
-                status_color, bg_color, risk_text = "#2ECC71", "#E8F8F0", "LOW RISK"
-                sub_text = "Loan is Likely to be Repaid"
-                icon = "✓"
+        if prob_default < 0.30:
+            status_color, bg_color, risk_text = "#2ECC71", "#E8F8F0", "LOW RISK"
+            sub_text = "Loan is Likely to be Repaid"
+            icon = "✓"
 
-            elif prob_default < 0.70:
-                status_color, bg_color, risk_text = "#F39C12", "#FEF5E7", "MEDIUM RISK"
-                sub_text = "Caution Recommended"
-                icon = "!"
+        elif prob_default < 0.70:
+            status_color, bg_color, risk_text = "#F39C12", "#FEF5E7", "MEDIUM RISK"
+            sub_text = "Caution Recommended"
+            icon = "!"
 
-            else:
-                status_color, bg_color, risk_text = "#E74C3C", "#FDEDEC", "HIGH RISK"
-                sub_text = "High Default Probability"
-                icon = "!"
-
+        else:
+            status_color, bg_color, risk_text = "#E74C3C", "#FDEDEC", "HIGH RISK"
+            sub_text = "High Default Probability"
+            icon = "!"
+    
             # Divider
-            st.markdown("<br><hr>", unsafe_allow_html=True)
-                
-            # Section Header matching Tenakata theme
-            st.markdown("""
-                        <div style="
-                        font-family:'Arial Black', sans-serif; 
-                        font-size:22px; 
-                        color:#0B3C49; 
-                        font-weight:900; 
-                        text-align: center;
-                        margin-bottom:15px;
-                        text-align: center;
-                        ">
-                        📊 Prediction Result
-                        </div>
-                    """, unsafe_allow_html=True)
-            # ================================
-            # SIDE-BY-SIDE LAYOUT
-        # ================================
-            risk_value = prob_default * 100
-            prob_percent = risk_value
-                
-            col_metric, col, col_gauge = st.columns([0.33, 0.33, 0.33]) # Adjusted for better spacing   
-
-            with col_metric:
-                    metric_html = f"""
-
+        st.markdown("<br><hr>", unsafe_allow_html=True)
+        
+        # Section Header matching Tenakata theme
+        st.markdown("""
                     <div style="
-                        background-color: #FFFFFF;
-                        padding: 25px;
-                        margin-top: 10px;
-                        border-radius: 12px;
-                        border: 1px solid #E5E7EB;
-                        box-shadow: 2px 2px 8px rgba(0,0,0,0.03);
-                        height: 230px;
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                        align-items: center;
-                        text-align: center;
-                        box-sizing: border-box;
-                        ">
-                    <div style="
-                    color: #374151;
-                    font-weight: 700;
-                    font-family: 'Arial Black', sans-serif;
-                    font-size: 15px;
-                    margin-bottom: 8px;
+                    font-family:'Arial Black', sans-serif; 
+                    font-size:22px; 
+                    color:#0B3C49; 
+                    font-weight:900; 
+                    text-align: center;
+                    margin-bottom:15px;
+                    text-align: center;
                     ">
-                    Probability of Default
+                    📊 Prediction Result
                     </div>
-                    <div style="
-                    width: 40px;
-                    height: 3px;
-                    background-color: {status_color};
-                    border-radius: 2px;
-                    margin-bottom: 15px;
-                    ">
-                    </div>
-
-                    <div style="
-                    color: {status_color};
-                    font-family: 'Arial Black';
-                    font-size: 46px;
-                    font-weight: 900;
-                    line-height: 1;
-                    ">
-                    {prob_percent:.1f}%
-                    </div>
-
-                    <div style="
-                    margin-top: 10px;
-                    color: #6B7280;
-                    font-size: 14px;
-                    font-weight: 700;
-                    font-family: 'Arial Black';
-                    ">
-                    Model predicted default probability
-                    </div>
-                    </div>
-                    """
-                    st.markdown(textwrap.dedent(metric_html), unsafe_allow_html=True)
-
-            # ================================
-            # GAUGE CHART (RIGHT)
-            # ================================
-
-            with col_gauge:
-                st.markdown("""
-                    <div style="
-                    background-color: white;
-                    padding: 15px 20px;
-                    border-radius: 12px;
-                    border: 1px solid #E5E7EB;
-                    height: 230px;
-                    box-shadow: 2px 2px 8px rgba(0,0,0,0.03);
-                ">
                 """, unsafe_allow_html=True)
+                # ================================
+                # SIDE-BY-SIDE LAYOUT
+                # ================================
+        risk_value = prob_default * 100
+        prob_percent = risk_value
                 
-                fig = go.Figure(go.Indicator(
-                    mode="gauge+number",
-                    value=risk_value,
+        col_metric, col, col_gauge = st.columns([0.33, 0.33, 0.33]) # Adjusted for better spacing   
 
-                    title={"text": "Loan Risk Gauge",
+        with col_metric:
+
+            metric_html = f"""
+            <div style="
+            background-color: #FFFFFF;
+            padding: 25px;
+            margin-top: 10px;
+            border-radius: 12px;
+            border: 1px solid #E5E7EB;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.03);
+            height: 230px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-sizing: border-box;
+            ">
+            <div style="
+            color: #374151;
+            font-weight: 700;
+            font-family: 'Arial Black', sans-serif;
+            font-size: 15px;
+            margin-bottom: 8px;
+            ">
+            Probability of Default
+            </div>
+            <div style="
+            width: 40px;
+            height: 3px;
+            background-color: {status_color};
+            border-radius: 2px;
+            margin-bottom: 15px;
+            ">
+            </div>
+
+            <div style="
+            color: {status_color};
+            font-family: 'Arial Black';
+            font-size: 46px;
+            font-weight: 900;
+            line-height: 1;
+            ">
+            {prob_percent:.1f}%
+            </div>
+
+            <div style="
+            margin-top: 10px;
+            color: #6B7280;
+            font-size: 14px;
+            font-weight: 700;
+            font-family: 'Arial Black';
+            ">
+            Model predicted default probability
+            </div>
+            </div>
+            """
+            st.markdown(textwrap.dedent(metric_html), unsafe_allow_html=True)
+
+        # ================================
+        # GAUGE CHART (RIGHT)
+        # ================================
+
+        with col_gauge:
+            st.markdown("""
+                <div style="
+                background-color: white;
+                padding: 15px 20px;
+                border-radius: 12px;
+                border: 1px solid #E5E7EB;
+                height: 230px;
+                box-shadow: 2px 2px 8px rgba(0,0,0,0.03);
+            ">
+            """, unsafe_allow_html=True)
+            
+            fig = go.Figure(go.Indicator(
+                mode="gauge+number",
+                value=risk_value,
+
+                title={"text": "Loan Risk Gauge",
+                    "font": {"family": "Arial Black, Arial, sans-serif",
+                                "size": 16,
+                                "color": "#0B3C49"}},
+
+                number={"suffix": "%",
                         "font": {"family": "Arial Black, Arial, sans-serif",
-                                    "size": 16,
-                                    "color": "#0B3C49"}},
+                                "size": 34,
+                                "color": "#0B3C49"}},
 
-                    number={"suffix": "%",
-                            "font": {"family": "Arial Black, Arial, sans-serif",
-                                    "size": 34,
-                                    "color": "#0B3C49"}},
+                gauge={
+                    "axis": {"range": [0, 100],
+                            "tickcolor": "black",
+                            "tickfont": {"family": "Arial Black, Arial, sans-serif",
+                                        "size": 14
+                                        }
+                            },
+                    "bar": {"color": "#0B3C49"},
+                    "steps": [
+                        {"range": [0, 30], "color": "#2ECC71"},
+                        {"range": [30, 70], "color": "#F1C40F"},
+                        {"range": [70, 100], "color": "#E74C3C"}
+                    ]
+                }
+            ))
 
-                    gauge={
-                        "axis": {"range": [0, 100],
-                                "tickcolor": "black",
-                                "tickfont": {"family": "Arial Black, Arial, sans-serif",
-                                            "size": 14,
-                                            "color": "black"}},
-                        "bar": {"color": "#0B3C49"},
-                        "steps": [
-                            {"range": [0, 30], "color": "#2ECC71"},
-                            {"range": [30, 70], "color": "#F1C40F"},
-                            {"range": [70, 100], "color": "#E74C3C"}
-                        ]
-                    }
-                ))
+            fig.update_layout(
+                height=200,
+                margin=dict(l=10, r=10, t=40, b=10),
+                paper_bgcolor="rgba(0,0,0,0)",
+                plot_bgcolor="rgba(0,0,0,0)"
+            )
 
-                fig.update_layout(
-                    height=200,
-                    margin=dict(l=10, r=10, t=40, b=10),
-                    paper_bgcolor="rgba(0,0,0,0)",
-                    plot_bgcolor="rgba(0,0,0,0)"
-                )
+            st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
 
-                st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
-
-                st.markdown("</div>", unsafe_allow_html=True)
+        st.markdown("</div>", unsafe_allow_html=True)
