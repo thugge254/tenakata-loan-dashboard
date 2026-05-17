@@ -1021,12 +1021,12 @@ def show_prediction_analysis(df):
         # ================================
         # GAUGE CHART (RIGHT)
         # ================================
-                # 1. Inject custom CSS at the top of your app to handle the background & padding
+        # 1. Inject custom CSS at the top of your app to handle the background & padding
         st.markdown("""
             <style>
             /* Target only containers wrapped in our custom class */
             .white-container {
-                background-color: #ffffff;
+                background-color: #ffffff !important;
                 padding: 20px;
                 border-radius: 10px;
                 border: 1px solid #e6e9ef; /* Simulates the border=True look */
