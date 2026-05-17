@@ -928,9 +928,10 @@ def show_prediction_analysis(df):
                 </div>
                     <div style="
                     text-align: center; 
-                    color: black; 
+                    color: #0B3C49; 
                     font-size: 16px; 
-                    font-family: 'Arial Black', sans-serif;">
+                    font-family: 'Arial Black', sans-serif;
+                    ">
                     {sub_text}
                     </div>
         """, unsafe_allow_html=True)
@@ -1020,6 +1021,24 @@ def show_prediction_analysis(df):
         # ================================
         # GAUGE CHART (RIGHT)
         # ================================
+                # 1. Inject custom CSS at the top of your app to handle the background & padding
+        st.markdown("""
+            <style>
+            /* Target only containers wrapped in our custom class */
+            .white-container {
+                background-color: #ffffff;
+                padding: 20px;
+                border-radius: 10px;
+                border: 1px solid #e6e9ef; /* Simulates the border=True look */
+                margin-bottom: 20px;
+            }
+            
+            /* Optional: Ensure text elements inside this container contrast well against white */
+            .white-container h1, .white-container h2, .white-container h3, .white-container p {
+                color: #0B3C49 !important;
+            }
+            </style>
+        """, unsafe_allow_html=True)
 
         with col_gauge:
             # This creates a native, beautiful bordered card wrapper
@@ -1034,12 +1053,12 @@ def show_prediction_analysis(df):
                                     "color": "#0B3C49"}},
                     number={"suffix": "%",
                             "font": {"family": "Arial Black, Arial, sans-serif",
-                                    "size": 34,
+                                    "size": 30,
                                     "color": "#0B3C49"}},
                     gauge={
                         "axis": {"range": [0, 100],
                                 "tickcolor": "black",
-                                "tickfont": {"family": "Arial Black, Arial, sans-serif", "size": 14}
+                                "tickfont": {"family": "Arial Black, Arial, sans-serif", "size": 14, "color": "#0B3C49"}
                         },
                         "bar": {"color": "#0B3C49"},
                         "steps": [
