@@ -459,6 +459,7 @@ def show_prediction_analysis(df):
     <h3 style="
     margin-bottom:0px;
     font-size:28px;
+    color:#0B3C49;
     font-weight:900;
     font-family:'Arial Black';
     ">
