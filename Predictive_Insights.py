@@ -468,9 +468,10 @@ def show_prediction_analysis(df):
 
     <p style="
     color:gray;
-    margin-top:5px;
+    margin-top:2px;
     font-family:'Arial Black';
-    font-size:14px;
+    font-size:18px;
+    font-color: #0B3C49;
     ">
     Enter borrower information to predict probability of loan default.
     </p>
