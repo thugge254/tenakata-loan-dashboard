@@ -232,7 +232,7 @@ def show_prediction_analysis(df):
             value=portfolio_risk,
 
             title={
-                'text': "Risk Measure",
+    
                 'font': {
                             'size': 22,
                             'color': '#0B3C49',
@@ -278,8 +278,8 @@ def show_prediction_analysis(df):
         ))
 
         fig.update_layout(
-            height=350,
-            margin=dict(l=30, r=30, t=100, b=20), # Increased top margin (t)
+            height=300,
+            margin=dict(l=30, r=40, t=100, b=20),
             title={
                 'text': "<b>Portfolio Risk Distribution</b>",
                 'y': 0.85, 
@@ -290,7 +290,7 @@ def show_prediction_analysis(df):
             }
             )
 
-        st.plotly_chart(fig, use_container_width=False)
+        st.plotly_chart(fig, use_container_width=True)
 
     with col2:
         # Creating the Risk Level segments
