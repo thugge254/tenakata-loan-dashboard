@@ -1,5 +1,7 @@
 import joblib
 import numpy as np
+import streamlit.components.v1 as components
+import plotly.io as pio
 import textwrap
 import streamlit as st
 import pandas as pd
@@ -261,7 +263,7 @@ def show_prediction_analysis(df):
                 }
                 },
 
-                'bar': {'color': "#E53935"},
+                'bar': {'color': "#0B3C49", 'thickness': 0.45},
 
                 'steps': [
                     {'range': [0, 30], 'color': "#07f041"},
@@ -1006,7 +1008,7 @@ def show_prediction_analysis(df):
             </div>
 
             <div style="
-            margin-top: 10px;
+            margin-top: 40px;
             color: #6B7280;
             font-size: 14px;
             font-weight: 700;
@@ -1018,128 +1020,65 @@ def show_prediction_analysis(df):
             """
             st.markdown(textwrap.dedent(metric_html), unsafe_allow_html=True)
 
-        # ================================
-        # GAUGE CHART (RIGHT)
-        # ================================
-
-        # with col_gauge:
-        #     # 1. Clean, isolated card structure using a standard HTML div wrapper
-        #     st.markdown("""
-        #             <div style="
-        #                 background-color: #e6e9ef; 
-        #                 padding: 20px 25px; 
-        #                 border-radius: 12px; 
-        #                 border: 1px solid #e6e9ef;
-        #                 box-shadow: 0px 2px 5px rgba(0,0,0,0.02);
-        #                 margin-bottom: 20px;
-        #                 ">
-        #                 <h3 style="
-        #                 font-family: 'Arial Black', Arial, sans-serif; 
-        #                 size: 16px; 
-        #                 color: #0B3C49; 
-        #                 margin: 0 0 10px 0; 
-        #                 text-align: center;
-        #             ">Loan Risk Gauge</h3>
-        #             <div id="plotly-gauge-target"></div>
-        #         </div>
-        #     """, unsafe_allow_html=True)
-
-        #     fig = go.Figure(go.Indicator(
-        #         mode="gauge+number",
-        #         value=risk_value,
-        #         title={"text": "Loan Risk Gauge",
-        #             "font": {"family": "Arial Black, Arial, sans-serif",
-        #                         "size": 16,
-        #                         "color": "#0B3C49"}},
-        #         number={"suffix": "%",
-        #                 "font": {"family": "Arial Black, Arial, sans-serif",
-        #                         "size": 30,
-        #                         "color": "#0B3C49"}},
-        #         gauge={
-        #             "axis": {"range": [0, 100],
-        #                     "tickcolor": "black",
-        #                     "tickfont": {"family": "Arial Black, Arial, sans-serif", "size": 14, "color": "#0B3C49"}
-        #             },
-        #             "bar": {"color": "#0B3C49"},
-        #             "steps": [
-        #                 {"range": [0, 30], "color": "#2ECC71"},
-        #                 {"range": [30, 70], "color": "#F1C40F"},
-        #                 {"range": [70, 100], "color": "#E74C3C"}
-        #             ]
-        #         }
-        #     ))
-
-        #     fig.update_layout(
-        #         height=180,
-        #         margin=dict(l=10, r=10, t=50, b=10),
-        #         paper_bgcolor="rgba(0,0,0,0)",
-        #         plot_bgcolor="rgba(0,0,0,0)"
-        #     )
-
-        #     # Added use_container_width=True so it fills the container perfectly
-        #     st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
-
-        # st.markdown("</div>", unsafe_allow_html=True)
-
-
         with col_gauge:
-            # 1. Inject CSS to change the container background color and rounded corners
-            st.markdown("""
-                <style>
-                /* This targets the container with a border inside your app */
-                div[data-testid="stVerticalBlockBorderWithStyling"] {
-                    background-color: #ffffff !important;  /* Your custom background color */
-                    border: 1px solid #e6e9ef !important;  /* Matches border to background */
-                    border-radius: 30px !important;        /* Smooth rounded corners */
-                    box-shadow: 0px 2px 5px rgba(0,0,0,0.02);
+            # 1. Build your Plotly Figure with locked axis layout
+            fig = go.Figure(go.Indicator(
+                mode="gauge+number",
+                value=risk_value,
+                number={
+                    "suffix": "%",
+                    "font": {"family": "Arial Black, Arial, sans-serif", "size": 30, "color": "#0B3C49"}
+                },
+                gauge={
+                    "axis": {
+                        "range": [0, 100],
+                        "dtick": 50,  # Keeps it clean like the mobile view
+                        "tickcolor": "black",
+                        "tickfont": {"family": "Arial Black, Arial, sans-serif", "size": 14, "color": "#0B3C49"}
+                    },
+                    "bar": {"color": "#0B3C49"},
+                    "steps": [
+                        {"range": [0, 30], "color": "#2ECC71"},
+                        {"range": [30, 70], "color": "#F1C40F"},
+                        {"range": [70, 100], "color": "#E74C3C"}
+                    ]
                 }
-                </style>
-            """, unsafe_allow_html=True)
+            ))
 
-            # 2. Open the container natively (No open or close HTML tags needed!)
-            with st.container(border=True):
-                
-                # Centered Header
-                st.markdown("""
+            fig.update_layout(
+                height=180,  # Keeps the needle pointer mathematically accurate
+                margin=dict(l=20, r=30, t=30, b=10),
+                paper_bgcolor="rgba(0,0,0,0)",
+                plot_bgcolor="rgba(0,0,0,0)"
+            )
+
+            # 2. Convert the figure directly into raw HTML components
+            gauge_html = pio.to_html(fig, include_plotlyjs='cdn', config={"displayModeBar": False})
+
+            # 3. Create a clean HTML layout string
+            card_html = f"""
+                <div style="
+                    background-color: #ffffff; 
+                    padding: 20px 10px; 
+                    height: 230px;
+                    border-radius: 20px; 
+                    border: 1px solid #e6e9ef;
+                    box-shadow: 0px 4px 10px rgba(0,0,0,0.03);
+                    font-family: 'Arial Black', Arial, sans-serif;
+                    ">
                     <h3 style="
-                        font-family: 'Arial Black', Arial, sans-serif; 
                         font-size: 16px; 
                         color: #0B3C49; 
-                        background-color: #ffffff !important; 
-                        margin: 5px 0 0 0; 
+                        margin: 0 0 10px 0; 
                         text-align: center;
+                        background-color: transparent;
                     ">Loan Risk Gauge</h3>
-                """, unsafe_allow_html=True)
-                
-                # Build your Plotly Figure
-                fig = go.Figure(go.Indicator(
-                    mode="gauge+number",
-                    value=risk_value,
-                    number={
-                        "suffix": "%",
-                        "font": {"family": "Arial Black, Arial, sans-serif", "size": 30, "color": "#0B3C49"}
-                    },
-                    gauge={
-                        "axis": {
-                            "range": [0, 100],
-                            "tickcolor": "black",
-                            "tickfont": {"family": "Arial Black, Arial, sans-serif", "size": 14, "color": "#0B3C49"}
-                        },
-                        "bar": {"color": "#0B3C49"},
-                        "steps": [
-                            {"range": [0, 30], "color": "#2ECC71"},
-                            {"range": [30, 70], "color": "#F1C40F"},
-                            {"range": [70, 100], "color": "#E74C3C"}
-                        ]
-                    }
-                ))
+                    
+                    {gauge_html}
+                    
+                </div>
+            """
 
-                fig.update_layout(
-                    height=150,  # Fixed vertical height so the pointer aligns perfectly
-                    margin=dict(l=40, r=40, t=25, b=10),
-                    paper_bgcolor="rgba(0,0,0,0)",
-                    plot_bgcolor="rgba(0,0,0,0)"
-                )
-
-                # Render the chart inside the colored container
-                st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
+            # 4. Render the unified HTML code safely using components.html
+            # Height 300 gives the custom card container plenty of space to display cleanly
+            components.html(card_html, height=300, scrolling=False)
