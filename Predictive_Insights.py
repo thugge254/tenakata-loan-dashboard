@@ -278,7 +278,7 @@ def show_prediction_analysis(df):
         ))
 
         fig.update_layout(
-            height=400,
+            height=350,
             margin=dict(l=30, r=30, t=100, b=20), # Increased top margin (t)
             title={
                 'text': "<b>Portfolio Risk Distribution</b>",
@@ -909,6 +909,31 @@ def show_prediction_analysis(df):
             # Divider
         st.markdown("<br><hr>", unsafe_allow_html=True)
         
+                # Displaying a styled markdown block using your variables
+        st.markdown(f""" 
+                <div style="
+                    background-color: {bg_color}; 
+                    color: {status_color}; 
+                    padding: 10px 15px; 
+                    border-radius: 8px; 
+                    font-weight: bold; 
+                    font-size: 30px;
+                    text-align: center;
+                    margin-bottom: 10px;
+                    font-family: 'Arial Black', sans-serif;
+                    ">
+                    {icon} {risk_text}
+                </div>
+                    <div style="
+                    text-align: center; 
+                    color: black; 
+                    font-size: 16px; 
+                    font-family: 'Arial Black', sans-serif;">
+                    {sub_text}
+                    </div>
+        """, unsafe_allow_html=True)
+
+
         # Section Header matching Tenakata theme
         st.markdown("""
                     <div style="
@@ -995,54 +1020,40 @@ def show_prediction_analysis(df):
         # ================================
 
         with col_gauge:
-            st.markdown("""
-                <div style="
-                background-color: white;
-                padding: 15px 20px;
-                border-radius: 12px;
-                border: 1px solid #E5E7EB;
-                height: 230px;
-                box-shadow: 2px 2px 8px rgba(0,0,0,0.03);
-            ">
-            """, unsafe_allow_html=True)
-            
-            fig = go.Figure(go.Indicator(
-                mode="gauge+number",
-                value=risk_value,
-
-                title={"text": "Loan Risk Gauge",
-                    "font": {"family": "Arial Black, Arial, sans-serif",
-                                "size": 16,
-                                "color": "#0B3C49"}},
-
-                number={"suffix": "%",
+            # This creates a native, beautiful bordered card wrapper
+            with st.container(border=True):
+                
+                fig = go.Figure(go.Indicator(
+                    mode="gauge+number",
+                    value=risk_value,
+                    title={"text": "Loan Risk Gauge",
                         "font": {"family": "Arial Black, Arial, sans-serif",
-                                "size": 34,
-                                "color": "#0B3C49"}},
+                                    "size": 16,
+                                    "color": "#0B3C49"}},
+                    number={"suffix": "%",
+                            "font": {"family": "Arial Black, Arial, sans-serif",
+                                    "size": 34,
+                                    "color": "#0B3C49"}},
+                    gauge={
+                        "axis": {"range": [0, 100],
+                                "tickcolor": "black",
+                                "tickfont": {"family": "Arial Black, Arial, sans-serif", "size": 14}
+                        },
+                        "bar": {"color": "#0B3C49"},
+                        "steps": [
+                            {"range": [0, 30], "color": "#2ECC71"},
+                            {"range": [30, 70], "color": "#F1C40F"},
+                            {"range": [70, 100], "color": "#E74C3C"}
+                        ]
+                    }
+                ))
 
-                gauge={
-                    "axis": {"range": [0, 100],
-                            "tickcolor": "black",
-                            "tickfont": {"family": "Arial Black, Arial, sans-serif",
-                                        "size": 14
-                                        }
-                            },
-                    "bar": {"color": "#0B3C49"},
-                    "steps": [
-                        {"range": [0, 30], "color": "#2ECC71"},
-                        {"range": [30, 70], "color": "#F1C40F"},
-                        {"range": [70, 100], "color": "#E74C3C"}
-                    ]
-                }
-            ))
+                fig.update_layout(
+                    height=180,
+                    margin=dict(l=10, r=10, t=50, b=10),
+                    paper_bgcolor="rgba(0,0,0,0)",
+                    plot_bgcolor="rgba(0,0,0,0)"
+                )
 
-            fig.update_layout(
-                height=200,
-                margin=dict(l=10, r=10, t=40, b=10),
-                paper_bgcolor="rgba(0,0,0,0)",
-                plot_bgcolor="rgba(0,0,0,0)"
-            )
-
-            st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
-
-        st.markdown("</div>", unsafe_allow_html=True)
+                # Added use_container_width=True so it fills the container perfectly
+                st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
