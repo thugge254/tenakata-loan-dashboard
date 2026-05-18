@@ -258,7 +258,7 @@ def show_prediction_analysis(df):
                     'tickwidth': 2,       
                     'tickcolor': "black",
                     'tickfont': {
-                        'family': "Arial-Black, Arial, sans-serif",
+                        'family': "Arial-Black, Arial-Bold, sans-serif",
                         'size': 14,            
                         'color': '#000000'       
                     }
@@ -1109,9 +1109,9 @@ def show_prediction_analysis(df):
                         "ticktext": ["0", "25", "50", "75", "100"],
                         "dtick": 50, 
                         "tickcolor": "black",
-                        "tickfont": {"family": "Arial Black, Arial, sans-serif", 
-                                     "size": 18,
-                                       "color": "#0B3C49"}
+                        "tickfont": {"family": "Arial Black, Arial-Bold, sans-serif", 
+                                    "size": 18,
+                                    "color": "#0B3C49"}
                      
                     },
                     "bar": {"color": "#0B3C49"},
@@ -1125,7 +1125,7 @@ def show_prediction_analysis(df):
 
             fig.update_layout(
                 height=240,  
-                margin=dict(l=40, r=40, t=10, b=10),
+                margin=dict(l=40, r=50, t=10, b=10),
                 paper_bgcolor="rgba(0,0,0,0)",
                 plot_bgcolor="rgba(0,0,0,0)"
             )
