@@ -259,7 +259,7 @@ def show_prediction_analysis(df):
                         'color': '#0B3C49'       
                     }
                 },
-                'bar': {'color': "#0B3C49", 'thickness': 0.45},
+                'bar': {'color': "#0B3C49"},
                 'steps': [
                     {'range': [0, 30], 'color': "#07f041"},
                     {'range': [30, 70], 'color': "#f0cd07"},
@@ -1102,9 +1102,15 @@ def show_prediction_analysis(df):
                 gauge={
                     "axis": {
                         "range": [0, 100],
+                        "tickmode": "array",
+                        "tickvals": [0, 25, 50, 75, 100],
+                        "ticktext": ["0", "25", "50", "75", "100"],
                         "dtick": 50,  # Keeps it clean like the mobile view
                         "tickcolor": "black",
-                        "tickfont": {"family": "Arial Black, Arial, sans-serif", "size": 14, "color": "#0B3C49"}
+                        "tickfont": {"family": "Arial Black, Arial, sans-serif", 
+                                     "size": 14,
+                                       "color": "#0B3C49"}
+                     
                     },
                     "bar": {"color": "#0B3C49"},
                     "steps": [
