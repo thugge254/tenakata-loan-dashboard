@@ -251,6 +251,9 @@ def show_prediction_analysis(df):
             gauge={
                 'axis': {
                     'range': [0, 100],
+                    "tickmode": "array",
+                    "tickvals": [0, 25, 50, 75, 100],
+                    "ticktext": ["0", "25", "50", "75", "100"],
                     'tickwidth': 2,       
                     'tickcolor': "black",
                     'tickfont': {
@@ -1124,7 +1127,7 @@ def show_prediction_analysis(df):
                 plot_bgcolor="rgba(0,0,0,0)"
             )
 
-            # 2. Convert the figure directly into raw HTML components
+            # 2. Convert the figure to raw HTML components
             gauge_html = pio.to_html(fig, include_plotlyjs='cdn', config={"displayModeBar": False})
 
             # 3. Create a clean HTML layout string
