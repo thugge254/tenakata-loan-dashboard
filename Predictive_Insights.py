@@ -211,7 +211,7 @@ def show_prediction_analysis(df):
     "Importance": importances
     }).sort_values(by="Importance", ascending=False)
 
-    col1, col2, col3 = st.columns([0.33, 0.33, 0.33])
+    col_PRD, col_BC, col_HM= st.columns([0.33, 0.33, 0.33])
 
     X = df.drop(columns=[
     "Status",
@@ -227,50 +227,44 @@ def show_prediction_analysis(df):
     # Portfolio average risk
     portfolio_risk = risk_scores.mean() * 100
 
-    with col1:
+    
+    with col_PRD:
 
         fig = go.Figure(go.Indicator(
             mode="gauge+number",
             value=portfolio_risk,
-
             title={
-    
                 'font': {
-                            'size': 22,
-                            'color': '#0B3C49',
-                            'family': "Arial Black"
-                     }
+                    'size': 22,
+                    'color': '#0B3C49',
+                    'family': "Arial Black"
+                }
             },
-
             number={
-            'suffix': "%",
-            'font': {
-                'size': 45,
-                'color': '#0B3C49', 
-                'family': "Arial Black"
-            }
-        },
-
+                'suffix': "%",
+                'font': {
+                    'size': 32, 
+                    'color': '#0B3C49', 
+                    'family': "Arial Black"
+                }
+            },
             gauge={
                 'axis': {
-                'range': [0, 100],
-                'tickwidth': 2,       
-                'tickcolor': "black",
-                'tickfont': {
-                'family': "Arial Black",
-                'size': 13,             
-                'color': '#0B3C49'       
-                }
+                    'range': [0, 100],
+                    'tickwidth': 2,       
+                    'tickcolor': "black",
+                    'tickfont': {
+                        'family': "Arial Black",
+                        'size': 14,            
+                        'color': '#0B3C49'       
+                    }
                 },
-
                 'bar': {'color': "#0B3C49", 'thickness': 0.45},
-
                 'steps': [
                     {'range': [0, 30], 'color': "#07f041"},
                     {'range': [30, 70], 'color': "#f0cd07"},
                     {'range': [70, 100], 'color': "#eb4034"}
                 ],
-
                 'threshold': {
                     'line': {'color': "black", 'width': 4},
                     'thickness': 0.70,
@@ -280,21 +274,53 @@ def show_prediction_analysis(df):
         ))
 
         fig.update_layout(
-            height=300,
-            margin=dict(l=30, r=40, t=100, b=20),
-            title={
-                'text': "<b>Portfolio Risk Distribution</b>",
-                'y': 0.85, 
-                'x': 0.5,
-                'xanchor': 'center',
-                'yanchor': 'top',
-                'font': {'size': 22, 'color': '#0B3C49', 'family': "Arial Black"}
-            }
-            )
+            height=220, 
+            margin=dict(l=40, r=40, t=10, b=10), 
+            paper_bgcolor='rgba(0,0,0,0)', 
+            plot_bgcolor='rgba(0,0,0,0)',  
+        )
 
-        st.plotly_chart(fig, use_container_width=True)
+        
+        # 2. Convert the figure directly into raw HTML components
+        # CHANGE: Named this 'raw_gauge_html' to avoid overwriting the variable name in the f-string loop below
+        raw_gauge_html = pio.to_html(fig, include_plotlyjs='cdn', config={"displayModeBar": False})
 
-    with col2:
+        # 3. Create a clean HTML layout string
+        gauge_card_html = f"""
+            <div style="
+                margin-top: 42px; /* CHANGE: Added 42px top margin so it perfectly matches the height alignment of your bar chart and heatmap */
+                background-color: #ffffff; 
+                padding: 15px; 
+                height: 270px; 
+                border-radius: 20px; 
+                border: 1px solid #e6e9ef;
+                box-shadow: 0px 4px 10px rgba(0,0,0,0.03);
+                font-family: 'Arial Black', Arial, sans-serif;
+                box-sizing: border-box; 
+                overflow: hidden; 
+                ">
+                <h3 style="
+                    font-size: 18px; 
+                    color: #0B3C49; 
+                    margin: 10px 0 15px 0; 
+                    text-align: center;
+                    background-color: transparent;
+                ">Portfolio Risk Distribution</h3> 
+                
+                <div style="margin-top: 10px;"> 
+                    {raw_gauge_html} </div>
+                
+            </div>
+        """
+
+        # 4. Render the unified HTML code safely using components.html
+        # CHANGE: Increased viewport height to 330 to comfortably clear the new 42px alignment offset spacer
+        components.html(gauge_card_html, height=330, scrolling=False)
+
+
+ 
+
+    with col_BC:
         # Creating the Risk Level segments
         df['Risk_Level'] = pd.cut(
             risk_scores,
@@ -318,7 +344,6 @@ def show_prediction_analysis(df):
             risk_counts,
             x='Risk_Level',
             y='Count',
-            title="<b>Risk Segmentation</b>",
             color='Risk_Level',
             color_discrete_map={
                 'Low Risk': '#00E676',   
@@ -334,27 +359,58 @@ def show_prediction_analysis(df):
             textposition='outside',
             cliponaxis=False
         )
+        
         fig_bar.update_layout(
-            height=400,
-            margin=dict(l=30, r=30, t=100, b=20),
-            title={
-                'text': "<b>Risk Segmentation</b>",
-                'y': 0.85,
-                'x': 0.5,
-                'xanchor': 'center',
-                'yanchor': 'top',
-                'font': {'size': 22, 'color': '#0B3C49', 'family': "Arial Black"}
-            },
-            yaxis_title="Number of Clients",
-            xaxis_title="Risk Level",
+            height=200,
+            # CHANGE: Adjusted padding (t=20, b=30) to give category text room to sit cleanly
+            margin=dict(l=40, r=30, t=20, b=30),
+            
+            # CHANGE: Set axis titles to None to completely disable them and prevent stacking overlaps
+            yaxis_title=None,
+            xaxis_title=None,
+            
             showlegend=False,
+            paper_bgcolor='rgba(0,0,0,0)',
             plot_bgcolor="white"
-
         )
 
-        st.plotly_chart(fig_bar, use_container_width=True)
+          
+        # 2. Convert the figure directly into raw HTML components
+        BC_html = pio.to_html(fig_bar, include_plotlyjs='cdn', config={"displayModeBar": False})
 
-        with col3:
+        # 3. Create a clean HTML layout string
+        bar_chart_html = f"""
+            <div style="
+                margin-top: 42px; 
+                background-color: #ffffff; 
+                padding: 15px; 
+                height: 270px; 
+                border-radius: 20px; 
+                border: 1px solid #e6e9ef;
+                box-shadow: 0px 4px 10px rgba(0,0,0,0.03);
+                font-family: 'Arial Black', Arial, sans-serif;
+                box-sizing: border-box; 
+                overflow: hidden; 
+                ">
+                <h3 style="
+                    font-size: 18px; 
+                    color: #0B3C49; 
+                    margin: 10px 0 5px 0; /* CHANGE: Reduced bottom margin slightly to lift chart space */
+                    text-align: center;
+                    background-color: transparent;
+                ">Risk Segmentation</h3> 
+                
+                <div style="margin-top: 5px;">
+                    {BC_html}
+                </div>
+                
+            </div>
+        """
+
+        # 4. Render the unified HTML code safely using components.html
+        components.html(bar_chart_html, height=330, scrolling=False)
+
+    with col_HM:
             # --- SAFETY CHECK ---
             if 'prediction_probability' not in df.columns:
 
@@ -371,7 +427,6 @@ def show_prediction_analysis(df):
                 ]
 
                 X_safe = df[feature_cols]
-
                 df['prediction_probability'] = pipeline.predict_proba(X_safe)[:, 1]
 
             # ------------------------------------------------------------------
@@ -397,8 +452,6 @@ def show_prediction_analysis(df):
             fig_heat = px.imshow(
                 heatmap_pivot,
                 labels=dict(
-                    x="Loan Type",
-                    y="Region",
                     color="Avg Risk Probability"
                 ),
                 color_continuous_scale='RdYlGn_r',
@@ -409,40 +462,58 @@ def show_prediction_analysis(df):
             # Layout
             # ------------------------------------------------------------------
             fig_heat.update_layout(
-                height=400,
+                height=200,
 
-                # THIS FIXES THE TITLE OVERLAP
-                margin=dict(l=30, r=30, t=100, b=20),
+                # CHANGE: Increased the left margin slightly from 50 to 65 to make sure region labels like "North-East" don't get chopped off on the edge
+                margin=dict(l=65, r=30, t=10, b=30),
 
-                title={
-                    'text': "<b>Risk Heatmap</b>",
-                    'y': 0.85,
-                    'x': 0.5,
-                    'xanchor': 'center',
-                    'yanchor': 'top',
-                    'font': {
-                        'size': 22,
-                        'color': '#0B3C49',
-                        'family': "Arial Black"
-                    }
-                },
+                # CHANGE: Set both axis titles to None to completely remove the overlapping text layers
+                xaxis_title=None,
+                yaxis_title=None,
 
-                xaxis_title="Loan Category",
-                yaxis_title="Geographic Region",
-
+                paper_bgcolor='rgba(0,0,0,0)',
                 plot_bgcolor="white",
 
                 font=dict(size=10)
             )
 
-            # Rotate labels
-            fig_heat.update_xaxes(tickangle=-45)
+            fig_heat.update_xaxes(showticklabels=False, visible=False)
+            fig_heat.update_yaxes(showticklabels=False, visible=False)
+            
+            # 2. Convert the figure directly into raw HTML components
+            HM_html = pio.to_html(fig_heat, include_plotlyjs='cdn', config={"displayModeBar": False})
+        
+            # 3. Create a clean HTML layout string
+            heatmap_html = f"""
+                <div style="
+                    margin-top: 42px; 
+                    background-color: #ffffff; 
+                    padding: 15px; 
+                    height: 270px; 
+                    border-radius: 20px; 
+                    border: 1px solid #e6e9ef;
+                    box-shadow: 0px 4px 10px rgba(0,0,0,0.03);
+                    font-family: 'Arial Black', Arial, sans-serif;
+                    box-sizing: border-box; 
+                    overflow: hidden; 
+                    ">
+                    <h3 style="
+                        font-size: 18px; 
+                        color: #0B3C49; 
+                        margin: 10px 0 15px 0; 
+                        text-align: center;
+                        background-color: transparent;
+                    ">Risk Heatmap</h3> <div style="margin-top: 5px;"> 
+                        {HM_html}
+                    </div>
+                    
+                </div>
+            """
 
-            # ------------------------------------------------------------------
-            # Display
-            # ------------------------------------------------------------------
-            st.plotly_chart(fig_heat, use_container_width=True)
+            # 4. Render the unified HTML code safely using components.html
+            components.html(heatmap_html, height=330, scrolling=False)
 
+  
     # =====================================================================================
     # LOAN RISK PREDICTION TOOL
     # =====================================================================================
@@ -971,12 +1042,11 @@ def show_prediction_analysis(df):
             border-radius: 12px;
             border: 1px solid #E5E7EB;
             box-shadow: 2px 2px 8px rgba(0,0,0,0.03);
-            height: 230px;
+            height: 270px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            text-align: center;
             box-sizing: border-box;
             ">
             <div style="
@@ -1008,7 +1078,7 @@ def show_prediction_analysis(df):
             </div>
 
             <div style="
-            margin-top: 40px;
+            margin-top: 20px;
             color: #6B7280;
             font-size: 14px;
             font-weight: 700;
@@ -1046,8 +1116,8 @@ def show_prediction_analysis(df):
             ))
 
             fig.update_layout(
-                height=180,  # Keeps the needle pointer mathematically accurate
-                margin=dict(l=20, r=30, t=30, b=10),
+                height=240,  # Keeps the needle pointer mathematically accurate
+                margin=dict(l=40, r=40, t=10, b=10),
                 paper_bgcolor="rgba(0,0,0,0)",
                 plot_bgcolor="rgba(0,0,0,0)"
             )
@@ -1059,12 +1129,13 @@ def show_prediction_analysis(df):
             card_html = f"""
                 <div style="
                     background-color: #ffffff; 
-                    padding: 20px 10px; 
-                    height: 230px;
+                    padding: 10px; 
+                    height: 270px;
                     border-radius: 20px; 
                     border: 1px solid #e6e9ef;
                     box-shadow: 0px 4px 10px rgba(0,0,0,0.03);
                     font-family: 'Arial Black', Arial, sans-serif;
+                    overflow: hidden;
                     ">
                     <h3 style="
                         font-size: 16px; 
