@@ -1109,7 +1109,7 @@ def show_prediction_analysis(df):
                         "ticktext": ["0", "25", "50", "75", "100"],
                         "dtick": 50, 
                         "tickcolor": "black",
-                        "tickfont": {"family": "Arial-Black, Arial, sans-serif", 
+                        "tickfont": {"family": "Arial Black, Arial, sans-serif", 
                                      "size": 18,
                                        "color": "#0B3C49"}
                      
