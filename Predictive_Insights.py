@@ -1110,8 +1110,7 @@ def show_prediction_analysis(df):
                         "ticktext": ["0", "25", "50", "75", "100"],
                         "dtick": 50, 
                         "tickcolor": "black",
-                        "tickfont": {"family": "Arial Black, Arial-Bold, sans-serif", 
-                                    "size": 18,
+                        "tickfont": {"size": 18,
                                     "color": "#0B3C49"}
                      
                     },
@@ -1148,14 +1147,14 @@ def show_prediction_analysis(df):
                     overflow: hidden;
                     ">
                     <h3 style="
-                        font-size: 16px; 
-                        color: #0B3C49; 
-                        margin: 0 0 10px 0; 
-                        text-align: center;
-                        background-color: transparent;
-                    ">Loan Risk Gauge</h3>
-                    
-                    {gauge_html}
+                    font-size: 16px; 
+                    color: #0B3C49; 
+                    margin: 0 0 10px 0; 
+                    text-align: center;
+                    background-color: transparent;
+                ">Loan Risk Gauge</h3>
+                
+                {gauge_html}
                     
                 </div>
             """
