@@ -245,7 +245,7 @@ def show_prediction_analysis(df):
                 'font': {
                     'size': 32, 
                     'color': '#0B3C49', 
-                    'family': "Arial Black"
+                    'family': "Arial-Bold"
                 }
             },
             gauge={
@@ -1106,7 +1106,7 @@ def show_prediction_analysis(df):
                         "ticktext": ["0", "25", "50", "75", "100"],
                         "dtick": 50, 
                         "tickcolor": "black",
-                        "tickfont": {"family": "Arial Black, Arial, sans-serif", 
+                        "tickfont": {"family": "Arial-Bold, Arial, sans-serif", 
                                      "size": 14,
                                        "color": "#0B3C49"}
                      
