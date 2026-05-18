@@ -984,7 +984,7 @@ def show_prediction_analysis(df):
             # Divider
         st.markdown("<br><hr>", unsafe_allow_html=True)
         
-                # Displaying a styled markdown block using your variables
+             
         st.markdown(f""" 
                 <div style="
                     background-color: {bg_color}; 
@@ -1009,8 +1009,6 @@ def show_prediction_analysis(df):
                     </div>
         """, unsafe_allow_html=True)
 
-
-        # Section Header matching Tenakata theme
         st.markdown("""
                     <div style="
                     font-family:'Arial Black', sans-serif; 
@@ -1024,13 +1022,11 @@ def show_prediction_analysis(df):
                     📊 Prediction Result
                     </div>
                 """, unsafe_allow_html=True)
-                # ================================
-                # SIDE-BY-SIDE LAYOUT
-                # ================================
+            
         risk_value = prob_default * 100
         prob_percent = risk_value
                 
-        col_metric, col, col_gauge = st.columns([0.33, 0.33, 0.33]) # Adjusted for better spacing   
+        col_metric, col, col_gauge = st.columns([0.33, 0.33, 0.33])
 
         with col_metric:
 
@@ -1091,7 +1087,7 @@ def show_prediction_analysis(df):
             st.markdown(textwrap.dedent(metric_html), unsafe_allow_html=True)
 
         with col_gauge:
-            # 1. Build your Plotly Figure with locked axis layout
+        
             fig = go.Figure(go.Indicator(
                 mode="gauge+number",
                 value=risk_value,
@@ -1105,7 +1101,7 @@ def show_prediction_analysis(df):
                         "tickmode": "array",
                         "tickvals": [0, 25, 50, 75, 100],
                         "ticktext": ["0", "25", "50", "75", "100"],
-                        "dtick": 50,  # Keeps it clean like the mobile view
+                        "dtick": 50, 
                         "tickcolor": "black",
                         "tickfont": {"family": "Arial Black, Arial, sans-serif", 
                                      "size": 14,
@@ -1122,7 +1118,7 @@ def show_prediction_analysis(df):
             ))
 
             fig.update_layout(
-                height=240,  # Keeps the needle pointer mathematically accurate
+                height=240,  
                 margin=dict(l=40, r=40, t=10, b=10),
                 paper_bgcolor="rgba(0,0,0,0)",
                 plot_bgcolor="rgba(0,0,0,0)"
@@ -1156,6 +1152,5 @@ def show_prediction_analysis(df):
                 </div>
             """
 
-            # 4. Render the unified HTML code safely using components.html
-            # Height 300 gives the custom card container plenty of space to display cleanly
+            # 4. Render the unified HTML code safely 
             components.html(card_html, height=300, scrolling=False)
