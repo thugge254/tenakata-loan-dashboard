@@ -300,6 +300,7 @@ def show_prediction_analysis(df):
                 border: 1px solid #e6e9ef;
                 box-shadow: 0px 4px 10px rgba(0,0,0,0.03);
                 font-family: 'Arial-Black';
+                font-weight: 700,
                 box-sizing: border-box; 
                 overflow: hidden; 
                 ">
@@ -1142,6 +1143,7 @@ def show_prediction_analysis(df):
                     border-radius: 20px; 
                     border: 1px solid #e6e9ef;
                     box-shadow: 0px 4px 10px rgba(0,0,0,0.03);
+                    font-weight: 700;
                     font-family: 'Arial Black', Arial, sans-serif;
                     overflow: hidden;
                     ">
