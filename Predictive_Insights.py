@@ -237,15 +237,16 @@ def show_prediction_analysis(df):
                 'font': {
                     'size': 22,
                     'color': '#0B3C49',
-                    'family': "Arial Black"
+                    'family': 'Arial-Black '
                 }
             },
+           
             number={
                 'suffix': "%",
                 'font': {
-                    'size': 32, 
+                    'size': 40, 
                     'color': '#0B3C49', 
-                    'family': "Arial-Bold"
+                    'family': "Arial Black, Arial, sans-serif"
                 }
             },
             gauge={
@@ -257,9 +258,9 @@ def show_prediction_analysis(df):
                     'tickwidth': 2,       
                     'tickcolor': "black",
                     'tickfont': {
-                        'family': "Arial Black",
+                        'family': "Arial-Black, Arial, sans-serif",
                         'size': 14,            
-                        'color': '#0B3C49'       
+                        'color': '#000000'       
                     }
                 },
                 'bar': {'color': "#0B3C49"},
@@ -278,7 +279,7 @@ def show_prediction_analysis(df):
 
         fig.update_layout(
             height=220, 
-            margin=dict(l=40, r=40, t=10, b=10), 
+            margin=dict(l=40, r=40, t=5, b=10), 
             paper_bgcolor='rgba(0,0,0,0)', 
             plot_bgcolor='rgba(0,0,0,0)',  
         )
@@ -298,7 +299,7 @@ def show_prediction_analysis(df):
                 border-radius: 20px; 
                 border: 1px solid #e6e9ef;
                 box-shadow: 0px 4px 10px rgba(0,0,0,0.03);
-                font-family: 'Arial Black', Arial, sans-serif;
+                font-family: 'Arial-Black';
                 box-sizing: border-box; 
                 overflow: hidden; 
                 ">
@@ -1096,7 +1097,9 @@ def show_prediction_analysis(df):
                 value=risk_value,
                 number={
                     "suffix": "%",
-                    "font": {"family": "Arial Black, Arial, sans-serif", "size": 30, "color": "#0B3C49"}
+                    "font": {"family": "Arial Black, Arial, sans-serif",
+                             "size": 30, 
+                             "color": "#0B3C49"}
                 },
                 gauge={
                     "axis": {
@@ -1106,8 +1109,8 @@ def show_prediction_analysis(df):
                         "ticktext": ["0", "25", "50", "75", "100"],
                         "dtick": 50, 
                         "tickcolor": "black",
-                        "tickfont": {"family": "Arial-Bold, Arial, sans-serif", 
-                                     "size": 14,
+                        "tickfont": {"family": "Arial-Black, Arial, sans-serif", 
+                                     "size": 18,
                                        "color": "#0B3C49"}
                      
                     },
