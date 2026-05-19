@@ -202,7 +202,7 @@ Python
 ## Author
 Moses Chege
 
-#### Data Analyst | Data Scientist | BI & Analytics Enthusiast
+#### Data Analyst | SQL • Python •  R • Excel | Turning Data into Actionable Insights
 
 #### Skills
 - Python
