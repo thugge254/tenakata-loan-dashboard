@@ -199,7 +199,6 @@ Python
 
 ![Predictive Insights](assets/predictive_insights.png)
 
-Example:
 ## Author
 Moses Chege
 
