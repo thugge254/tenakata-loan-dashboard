@@ -131,6 +131,22 @@ Python
 
 ### Overview Page
 
+<img width="1366" height="768" alt="Overview Page" src="https://github.com/user-attachments/assets/4f8a51f9-f02e-4a65-9966-e5d488d30069" />
+
+### Portfolio Disrtribution Page
+
+<img width="1366" height="768" alt="Portfolio Disrtribution" src="https://github.com/user-attachments/assets/713a01e1-b4e8-4e83-a41c-d92dc6a56f41" />
+
+### Predictive Insights Page
+
+<img width="1366" height="768" alt="Predictive Insights Page" src="https://github.com/user-attachments/assets/6149497c-9ed9-4210-b053-f5a24974f0ed" />
+
+### Loan Risk Prediction Section
+
+<img width="1366" height="768" alt="Loan Risk Prediction Section" src="https://github.com/user-attachments/assets/21d29e32-977e-4d63-89fb-9e83e59634a5" />
+
+### Risk Prediction Section
+<img width="1366" height="768" alt="Risk Prediction Section" src="https://github.com/user-attachments/assets/13429d9b-23db-45c6-bcf2-d9a91c3a7be3" />
 
 Example:
 ## Author
