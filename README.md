@@ -126,6 +126,17 @@ Python
 - Feature Engineering
 - Data Preprocessing
 - Model Evaluation
+- 
+### Installation
+
+#### Clone the Repository
+`git clone https://github.com/thugge254/tenakata-loan-dashboard.git`
+
+### Install Dependencies
+`pip install -r requirements.txt`
+
+### Run the Application
+`streamlit run app.py`
 
 ## Screenshots
 
