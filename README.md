@@ -130,7 +130,43 @@ Python
 - Feature Engineering
 - Data Preprocessing
 - Model Evaluation
-- 
+  
+### Project Structure
+```
+|   .gitignore
+|   app.py
+|   Loan_default.csv
+|   Portfolio_Distribution.py
+|   Predictive_Insights.py
+|   Profitability_Analysis.py
+|   README.md
+|   requirements.txt
+|   Risk_Analysis.py
+|   tena-kata.jpg
+|   utils.py
+|   xgb_model.pkl
+|   
++---.vscode
+|       settings.json
+|       
++---assets
+|       loan_risk_prediction.png
+|       overview.png
+|       portfolio_distribution.png
+|       predictive_insights (2).png
+|       predictive_insights.png
+|       
+\---__pycache__
+        app.cpython-312.pyc
+        PA.cpython-312.pyc
+        PD.cpython-312.pyc
+        Portfolio_Distribution.cpython-312.pyc
+        Predictive_Insights.cpython-312.pyc
+        Profitability_Analysis.cpython-312.pyc
+        RA.cpython-312.pyc
+        Risk_Analysis.cpython-312.pyc
+        utils.cpython-312.pyc
+```
 ### Installation
 
 #### Clone the Repository
