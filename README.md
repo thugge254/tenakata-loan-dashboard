@@ -2,7 +2,7 @@
 
 ## 🚀 Live Demo
 
-Click below to explore the dashboard:`https://tenakata-loan-dashboard.streamlit.app/`
+Click below to explore the dashboard: https://tenakata-loan-dashboard.streamlit.app/
 
 ### Overview
 
