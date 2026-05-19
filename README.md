@@ -35,7 +35,7 @@ The Overview page provides a high-level summary of the MSME loan portfolio.
 The Portfolio Distribution page explores how loans are distributed across different borrower and loan characteristics.
 
 #### Features
-- - Key Performance Indicators (KPIs)
+- Key Performance Indicators (KPIs)
 - Total Loan Portfolio
 - Total Loans Issued
 - Loan distribution by:
@@ -46,8 +46,21 @@ The Portfolio Distribution page explores how loans are distributed across differ
 #### Purpose
 
 This page helps identify portfolio concentration patterns and understand how lending is distributed among MSMEs.
-Portfolio Value
 
+
+### 3. Risk Analysis
+
+The Risk Analysis page focuses on identifying and analyzing risk within the portfolio.
+
+#### Features
+- Key Performance Indicators (KPIs):
+- Average Credit Score
+- Total High Risk Loans
+- Average DTI Ratio
+- Average LTV Ratio
+- Credit Score Distribution:
+                 - Box Plot
+                  - Histogram 
 #### Purpose
 
-This page helps users quickly understand the overall performance and status of the loan portfolio.
+This page supports better credit risk management by helping users identify risky segments and monitor portfolio health.
