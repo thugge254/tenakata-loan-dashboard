@@ -1,5 +1,9 @@
 # Empowering MSMEs Through Data: Tenakata Loan Portfolio Analysis
 
+## 🚀 Live Demo
+
+Click below to explore the dashboard:`https://tenakata-loan-dashboard.streamlit.app/`
+
 ### Overview
 
 **Empowering MSMEs Through Data: Tenakata Loan Portfolio Analysis** is an interactive data analytics and machine learning dashboard designed to provide actionable insights into MSME (Micro, Small, and Medium Enterprises) loan portfolios.
