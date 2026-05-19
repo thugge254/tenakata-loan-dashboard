@@ -16,3 +16,25 @@ The main objectives of this project are to:
 - Evaluate portfolio profitability.
 - Predict loan risk using machine learning.
 - Support data-driven lending decisions.
+
+Dashboard Pages
+
+## The dashboard consists of five interactive pages:
+
+#### 1. Overview
+
+The Overview page provides a high-level summary of the MSME loan portfolio.
+
+#### Features
+Key Performance Indicators (KPIs)
+Total Loans Issued
+Total Borrowers
+Portfolio Value
+Average Loan Amount
+Average Loan Size
+NPL Ratio
+Average Loan Amount
+
+#### Purpose
+
+This page helps users quickly understand the overall performance and status of the loan portfolio.
