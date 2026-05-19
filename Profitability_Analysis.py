@@ -17,7 +17,7 @@ def show_profitability_analysis(df):
 
     # Create  estimated interest revenue per loan column in the data
     df["estimated_interest"] = (
-        df["loan_amount"] * df["rate_of_interest"] / 100
+    df["loan_amount"] * df["rate_of_interest"] / 100
 )
 
 
