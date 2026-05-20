@@ -12,8 +12,7 @@ The project combines portfolio analytics, risk assessment, profitability analysi
 
 ### Dataset
 
-The dataset used in this project was obtained from Kaggle: https://www.kaggle.com/datasets/yasserh/loan-default-dataset 
-
+The dataset used in this project was obtained from Kaggle: https://www.kaggle.com/datasets/yasserh/loan-default-dataset
 
 The dataset contains loan-related and borrower-related features used for portfolio analysis, risk assessment, profitability analysis, and predictive modeling.
 
@@ -37,6 +36,7 @@ The dashboard consists of five interactive pages:
 The Overview page provides a high-level summary of the MSME loan portfolio.
 
 #### Features
+
 - Key Performance Indicators (KPIs)
 - Total Loans Issued
 - Total Borrowers
@@ -46,6 +46,7 @@ The Overview page provides a high-level summary of the MSME loan portfolio.
 The Portfolio Distribution page explores how loans are distributed across different borrower and loan characteristics.
 
 #### Features
+
 - Key Performance Indicators (KPIs)
 - Total Loan Portfolio
 - Total Loans Issued
@@ -58,12 +59,12 @@ The Portfolio Distribution page explores how loans are distributed across differ
 
 This page helps identify portfolio concentration patterns and understand how lending is distributed among MSMEs.
 
-
 ### 3. Risk Analysis
 
 The Risk Analysis page focuses on identifying and analyzing risk within the portfolio.
 
 #### Features
+
 - Key Performance Indicators (KPIs):
 - Average Credit Score
 - Total High Risk Loans
@@ -72,7 +73,7 @@ The Risk Analysis page focuses on identifying and analyzing risk within the port
 - Credit Score Distribution:
 - Box Plot
 - Histogram
-  
+
 #### Purpose
 
 This page supports better credit risk management by helping users identify risky segments and monitor portfolio health.
@@ -82,6 +83,7 @@ This page supports better credit risk management by helping users identify risky
 The Profitability Analysis page evaluates the financial performance of the portfolio.
 
 #### Features
+
 - Key Performance Indicators (KPIs):
 - Estimated Interest Revenue
 - Average Interest Rate
@@ -98,6 +100,7 @@ This page helps stakeholders understand which loan segments generate the highest
 The Predictive Insights page uses a machine learning model to predict loan risk.
 
 #### Features
+
 - XGBoost-based loan risk prediction
 - Interactive borrower input form
 - Real-time risk prediction
@@ -115,9 +118,11 @@ This page helps simulate lending decisions by estimating the likelihood of loan 
 ## Technologies Used
 
 ### Programming Language
-Python
 
-###Frameworks & Libraries
+**Python**
+
+### Frameworks & Libraries
+
 - Streamlit
 - Plotly
 - Pandas
@@ -131,20 +136,62 @@ Python
 - Data Preprocessing
 - Model Evaluation
 
+### Project Structure
+
+```
+|   .gitignore
+|   app.py
+|   Loan_default.csv
+|   Portfolio_Distribution.py
+|   Predictive_Insights.py
+|   Profitability_Analysis.py
+|   README.md
+|   requirements.txt
+|   Risk_Analysis.py
+|   tena-kata.jpg
+|   utils.py
+|   xgb_model.pkl
+|   
++---.vscode
+|       settings.json
+|     
++---assets
+|       loan_risk_prediction.png
+|       overview.png
+|       portfolio_distribution.png
+|       predictive_insights (2).png
+|       predictive_insights.png
+|     
+\---__pycache__
+        app.cpython-312.pyc
+        PA.cpython-312.pyc
+        PD.cpython-312.pyc
+        Portfolio_Distribution.cpython-312.pyc
+        Predictive_Insights.cpython-312.pyc
+        Profitability_Analysis.cpython-312.pyc
+        RA.cpython-312.pyc
+        Risk_Analysis.cpython-312.pyc
+        utils.cpython-312.pyc
+```
+
 ### Installation
 
 #### Clone the Repository
+
 `git clone https://github.com/thugge254/tenakata-loan-dashboard.git`
 
 ### Install Dependencies
+
 `pip install -r requirements.txt`
 
 ### Run the Application
+
 `streamlit run app.py`
 
 ## Screenshots
 
 ### Overview Page
+
 ![Overview Page](assets/overview.png)
 
 ### Portfolio Disrtribution Page
@@ -163,13 +210,14 @@ Python
 
 ![Predictive Insights](assets/predictive_insights.png)
 
-Example:
 ## Author
+
 Moses Chege
 
-#### Data Analyst | Data Scientist | BI & Analytics Enthusiast
+#### Data Analyst | SQL • Python •  R • Excel | Turning Data into Actionable Insights
 
 #### Skills
+
 - Python
 - SQL
 - Machine Learning
