@@ -5,8 +5,6 @@ import plotly.express as px
 
 def show_risk_analysis(df):
     
-    # 1. Create a copy to prevent modifying the original dataframe
-    df = df.copy()
 
     # Display KPIs in columns
     kpi13, kpi14, kpi15, kpi16, kpi17 = st.columns([0.2, 0.2, 0.2, 0.2, 0.2])
