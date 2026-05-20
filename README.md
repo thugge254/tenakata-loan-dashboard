@@ -115,9 +115,10 @@ This page helps simulate lending decisions by estimating the likelihood of loan 
 ## Technologies Used
 
 ### Programming Language
-Python
 
-###Frameworks & Libraries
+**Python**
+
+### Frameworks & Libraries
 - Streamlit
 - Plotly
 - Pandas
