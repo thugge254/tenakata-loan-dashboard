@@ -55,7 +55,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# ================== DATA LOADING ==================
+# ================== Downloading Data from Kaggle ==================
 
 DATA_PATH = "data/Loan_default.csv"
 
@@ -72,9 +72,6 @@ if not os.path.exists(DATA_PATH):
     )
 
 df = pd.read_csv(DATA_PATH)
-
-# ================= DATA =================
-df = pd.read_csv("data/Loan_default.csv")
 df.columns = df.columns.str.strip()
 
 image = Image.open("tena-kata.jpg")
