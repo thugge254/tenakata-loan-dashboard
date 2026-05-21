@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 import streamlit as st
+import os
+import kaggle
 import pandas as pd
 from PIL import Image
 import plotly.express as px
@@ -52,6 +54,24 @@ st.markdown("""
         }
     </style>
 """, unsafe_allow_html=True)
+
+# ================== DATA LOADING ==================
+
+DATA_PATH = "data/Loan_default.csv"
+
+if not os.path.exists(DATA_PATH):
+
+    os.makedirs("data", exist_ok=True)
+
+    kaggle.api.authenticate()
+
+    kaggle.api.dataset_download_files(
+        "yasserh/loan-default-dataset",
+        path="data",
+        unzip=True
+    )
+
+df = pd.read_csv(DATA_PATH)
 
 # ================= DATA =================
 df = pd.read_csv("data/Loan_default.csv")
