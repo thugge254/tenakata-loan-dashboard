@@ -11,7 +11,7 @@ from utils import purpose_map, calculate_total_loan_portfolio, calculate_average
 from utils import calculate_average_loan_size, calculate_total_loans_issued
 from Risk_Analysis import show_risk_analysis
 from  Profitability_Analysis import show_profitability_analysis
-from Predictive_Insights import show_prediction_analysis
+
 
 
 st.set_page_config(
