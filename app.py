@@ -53,7 +53,8 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-df = pd.read_csv("Loan_default.csv")
+df = pd.read_csv("Loan_Default.csv")
+
 df.columns = df.columns.str.strip()
 
 image = Image.open("tena-kata.jpg")
