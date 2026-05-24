@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import streamlit as st
 import os
-import kaggle
 import pandas as pd
 from PIL import Image
 import plotly.express as px
