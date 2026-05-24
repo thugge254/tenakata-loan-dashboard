@@ -54,23 +54,6 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# ================== Downloading Data from Kaggle ==================
-
-# DATA_PATH = "data/Loan_default.csv"
-
-# if not os.path.exists(DATA_PATH):
-
-#     os.makedirs("data", exist_ok=True)
-
-#     kaggle.api.authenticate()
-
-#     kaggle.api.dataset_download_files(
-#         "yasserh/loan-default-dataset",
-#         path="data",
-#         unzip=True
-#     )
-
-# df = pd.read_csv(DATA_PATH)
 df = pd.read_csv("data/Loan_default.csv")
 df.columns = df.columns.str.strip()
 
