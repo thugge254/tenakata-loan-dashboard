@@ -6,3 +6,4 @@ joblib
 scikit-learn
 xgboost
 numpy
+kaggle
