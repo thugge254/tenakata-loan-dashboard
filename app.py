@@ -13,7 +13,6 @@ from Risk_Analysis import show_risk_analysis
 from  Profitability_Analysis import show_profitability_analysis
 
 
-
 st.set_page_config(
     page_title='Tenakata Dashboard',
     page_icon=':chart_with_upwards_trend:',
