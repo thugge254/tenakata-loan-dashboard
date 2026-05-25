@@ -65,7 +65,7 @@ col1, col2 = st.columns([0.15, 0.85])
 with col1:
     st.image(image, width=120)
     st.markdown(
-        "<p style='font-size:12px; color:#0B3C49; font-size:17px; font-weight:bold; margin-top:1px;'>"
+        "<p style='font-size:2px; color:#0B3C49; font-size:17px; font-weight:bold; margin-top:1px;'>"
         "<b>Source:</b> Kaggle – Loan Default Dataset<br>Latest Available Data"
         "</p>",
         unsafe_allow_html=True
