@@ -27,6 +27,10 @@ The main objectives of this project are to:
 - Predict loan risk using machine learning.
 - Support data-driven lending decisions.
 
+## Key Insights
+
+The dashboard helps users explore loan portfolio performance, borrower characteristics, credit risk, and profitability. It combines descriptive analytics with machine learning to provide a practical view of lending patterns and potential loan risk.
+
 ## Dashboard Pages
 
 The dashboard consists of five interactive pages:
@@ -154,14 +158,12 @@ This page helps simulate lending decisions by estimating the likelihood of loan 
 |   
 +---.vscode
 |       settings.json
-|     
 +---assets
 |       loan_risk_prediction.png
 |       overview.png
 |       portfolio_distribution.png
 |       predictive_insights (2).png
 |       predictive_insights.png
-|     
 \---__pycache__
         app.cpython-312.pyc
         PA.cpython-312.pyc
